@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+$bot = new \Phergie\Irc\Bot\React\Bot;
+
+$bot->setConfig(__DIR__ . '/app/config.php');
+
+$bot->run();

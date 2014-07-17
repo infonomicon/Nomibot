@@ -1,0 +1,3 @@
+testa:hint a
+testb:hint b
+testc:hint c

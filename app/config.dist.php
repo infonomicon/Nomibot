@@ -13,6 +13,7 @@ $nickname = '';
 $password = '';
 $channels = [];
 $prefix   = '!';
+$logfile  = __DIR__ . '/storage/logs/bot.log';
 
 /*
 |--------------------------------------------------------------------------
@@ -62,5 +63,7 @@ return [
             'scoreboard' => new Infonomicon\IrcBot\WordGame\Scoreboards\SqliteScoreboard($scores),
         ]),
     ],
+
+    'logfile' => $logfile,
 
 ];

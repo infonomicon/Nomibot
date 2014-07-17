@@ -3,8 +3,14 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+$config = require __DIR__ . '/app/config.php';
+
 $bot = new \Phergie\Irc\Bot\React\Bot;
 
-$bot->setConfig(require __DIR__ . '/app/config.php');
+$bot->setConfig($config);
+
+$logger = $bot->getLogger();
+$logger->popHandler();
+$logger->pushHandler(new Monolog\Handler\RotatingFileHandler($config['logfile'], 7));
 
 $bot->run();

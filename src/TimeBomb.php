@@ -254,7 +254,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         if (strtolower($params[0]) === strtolower($this->bombNick)) {
-            $this->sendMEssage("{$this->bombNick}... You're trying to toss the bomb to yourself!?");
+            $this->sendMessage("{$this->bombNick}... You're trying to toss the bomb to yourself!?");
             return;
         }
 

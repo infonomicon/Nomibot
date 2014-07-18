@@ -162,9 +162,9 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $this->sendMessage("\x01ACTION stuffs the bomb into {$this->bombNick}'s pants.  The display reads [\x02$seconds\x02] seconds.\x01");
 
         if ($this->wireCount === 1) {
-            $this->sendMessage("Diffuse the bomb by cutting the correct wire. There is {$this->getWireCountWord()} wire. It is {$this->listWires()}.  Use !cut <color>");
+            $this->sendMessage("Defuse the bomb by cutting the correct wire. There is {$this->getWireCountWord()} wire. It is {$this->listWires()}.  Use !cut <color>");
         } else {
-            $this->sendMessage("Diffuse the bomb by cutting the correct wire. There are {$this->getWireCountWord()} wires. They are {$this->listWires()}.  Use !cut <color>");
+            $this->sendMessage("Defuse the bomb by cutting the correct wire. There are {$this->getWireCountWord()} wires. They are {$this->listWires()}.  Use !cut <color>");
         }
 
         $this->timer = $this->loop->addTimer($seconds, [$this, 'timerDetonate']);

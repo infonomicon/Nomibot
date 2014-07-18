@@ -55,6 +55,7 @@ return [
         new Infonomicon\IrcBot\ReJoin,
         new Infonomicon\IrcBot\Say,
         new Infonomicon\IrcBot\Sheep,
+        new Infonomicon\IrcBot\FlipGoat,
         new Infonomicon\IrcBot\Omniscan,
         new Infonomicon\IrcBot\Minivangi,
         new Infonomicon\IrcBot\DangerZone,

@@ -26,6 +26,16 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private $timer;
 
     /**
+     * @var int
+     */
+    private $seconds;
+
+    /**
+     * @var float
+     */
+    private $startTime;
+
+    /**
      * @var \Phergie\Irc\Plugin\React\Command\CommandEventInterface
      */
     private $ircEvent;
@@ -145,7 +155,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $this->ircEvent = $event;
         $this->ircQueue = $queue;
 
-        $seconds = rand(90, 270);
+        $this->seconds = rand(120, 240);
 
         shuffle($this->wires);
 
@@ -159,7 +169,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             $this->correctWireIndex = rand(0, 1);
         }
 
-        $this->sendMessage("\x01ACTION stuffs the bomb into {$this->bombNick}'s pants.  The display reads [\x02$seconds\x02] seconds.\x01");
+        $this->sendMessage("\x01ACTION stuffs the bomb into {$this->bombNick}'s pants.  The display reads [\x02$this->seconds\x02] seconds.\x01");
 
         if ($this->wireCount === 1) {
             $this->sendMessage("Defuse the bomb by cutting the correct wire. There is {$this->getWireCountWord()} wire. It is {$this->listWires()}.  Use !cut <color>");
@@ -167,7 +177,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             $this->sendMessage("Defuse the bomb by cutting the correct wire. There are {$this->getWireCountWord()} wires. They are {$this->listWires()}.  Use !cut <color>");
         }
 
-        $this->timer = $this->loop->addTimer($seconds, [$this, 'timerDetonate']);
+        $this->startTime = microtime(true);
+        $this->timer = $this->loop->addTimer($this->seconds, [$this, 'timerDetonate']);
     }
 
     /**
@@ -229,6 +240,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     {
         $this->loop->cancelTimer($this->timer);
         $this->timer = null;
+        $this->seconds = null;
+        $this->startTime = null;
         $this->ircEvent = null;
         $this->ircQueue = null;
         $this->bombNick = null;
@@ -243,7 +256,12 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
      */
     public function handleToss(Event $event, Queue $queue)
     {
-        if (!$this->isRunning() || $event->getNick() !== $this->bombNick || $event->getSource() !== $this->ircEvent->getSource()) {
+        if (!$this->isRunning() || $event->getSource() !== $this->ircEvent->getSource()) {
+            return;
+        }
+
+        if ($event->getNick() !== $this->bombNick) {
+            $this->sendMessage("Hey! No groping {$this->bombNick} while they have the bomb!");
             return;
         }
 
@@ -254,7 +272,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         if (strtolower($params[0]) === strtolower($this->bombNick)) {
-            $this->sendMessage("{$this->bombNick}... You're trying to toss the bomb to yourself!?");
+            $this->sendMessage("{$this->bombNick}: You already haz the bomb. Dumbass");
             return;
         }
 
@@ -267,7 +285,17 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return;
         }
 
-        $this->sendMessage("{$oldNick} has tossed the bomb to \x02{$this->bombNick}\x02!");
+        $this->sendMessage("{$this->bombNick}: {$oldNick} set you up the bomb. You have [\x02{$this->getSecondsRemaining()}\x02] seconds left!");
+    }
+
+    /**
+     * Get the seconds remaining
+     *
+     * @return int
+     */
+    private function getSecondsRemaining()
+    {
+        return $this->seconds - floor(microtime(true) - $this->startTime);
     }
 
     /**
@@ -293,6 +321,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             if ($wire === strtolower($this->wires[$i])) {
                 if ($this->correctWireIndex === $i) {
                     $this->sendMessage("{$this->bombNick} cut the {$wire} wire.  This has defused the bomb!");
+                } elseif ($this->wireCount === 1) {
+                    $queue->ircKick($event->getSource(), $this->bombNick, "\x02...*trollface.jpg*\x02");
                 } else {
                     $queue->ircKick($event->getSource(), $this->bombNick, "\x02snip...*BOOM!*\x02");
                 }

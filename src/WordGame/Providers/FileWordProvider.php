@@ -22,7 +22,7 @@ class FileWordProvider implements WordProvider
     /**
      * @var integer
      */
-    private $index = 0;
+    private $index;
 
     /**
      * @param string $filename
@@ -42,6 +42,8 @@ class FileWordProvider implements WordProvider
         }
 
         fclose($fh);
+
+        $this->index = rand(0, count($this->words) - 1);
     }
 
     /**

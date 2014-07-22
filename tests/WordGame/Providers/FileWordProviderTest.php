@@ -34,9 +34,10 @@ class FileWordProviderTest extends \PHPUnit_Framework_TestCase
         $filename = __DIR__ . '/stubs/wordlist.txt';
         $provider = new FileWordProvider($filename);
 
-        $this->assertEquals('testa', $provider->getWord());
-        $this->assertEquals('testb', $provider->getWord());
-        $this->assertEquals('testc', $provider->getWord());
-        $this->assertEquals('testa', $provider->getWord());
+        $word = $provider->getWord();
+        $provider->getWord();
+        $provider->getWord();
+
+        $this->assertEquals($word, $provider->getWord());
     }
 }

@@ -148,7 +148,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
 
         if (strtolower($this->bombNick) === strtolower($event->getConnection()->getNickname())) {
             $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
-            $this->endGame();
+            $this->bombNick = null;
             return;
         }
 

@@ -295,7 +295,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
      */
     private function getSecondsRemaining()
     {
-        return $this->seconds - floor(microtime(true) - $this->startTime);
+        return floor($this->seconds - (microtime(true) - $this->startTime));
     }
 
     /**

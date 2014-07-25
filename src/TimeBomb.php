@@ -51,6 +51,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private $bombNick;
 
     /**
+     * @var array
+     */
+    private $players = [];
+
+    /**
      * @var integer
      */
     private $wireCount;
@@ -144,7 +149,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
 
         $params = $event->getCustomParams();
 
-        $this->bombNick = isset($params[0]) ? $params[0] : $event->getNick();
+        $this->bombNick = isset($params[0]) ? trim($params[0]) : $event->getNick();
 
         if (strtolower($this->bombNick) === strtolower($event->getConnection()->getNickname())) {
             $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
@@ -152,6 +157,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return;
         }
 
+        $this->players[$event->getNick()] = 1;
+        $this->players[$this->bombNick] = 1;
         $this->ircEvent = $event;
         $this->ircQueue = $queue;
 
@@ -246,6 +253,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $this->ircQueue = null;
         $this->bombNick = null;
         $this->bombWires = null;
+        $this->players = [];
     }
 
     /**
@@ -271,16 +279,34 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return;
         }
 
-        if (strtolower($params[0]) === strtolower($this->bombNick)) {
+        if (trim(strtolower($params[0])) === strtolower($this->bombNick)) {
             $this->sendMessage("{$this->bombNick}: You already haz the bomb. Dumbass");
             return;
         }
 
         $oldNick = $this->bombNick;
-        $this->bombNick = $params[0];
+        $this->bombNick = trim($params[0]);
 
         if (strtolower($this->bombNick) === strtolower($event->getConnection()->getNickname())) {
             $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
+            $this->endGame();
+            return;
+        }
+
+        $this->players[$this->bombNick] = 1;
+        $rand = rand(0, 99);
+
+        if ($rand === 0) {
+            $this->sendMessage("As {$oldnick} was tossing the bomb to {$this->bombNick}, it disarmed!  Everybody wins!");
+            $this->endGame();
+            return;
+        }
+
+        if ($rand === 1) {
+            foreach ($this->players as $player => $val) {
+                $queue->ircKick($event->getSource(), $player, "\x02The bomb is fragile...*BOOM!*\x02");
+            }
+
             $this->endGame();
             return;
         }

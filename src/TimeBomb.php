@@ -69,39 +69,39 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
      * @var array
      */
     private $wires = [
-		'Red',
-		'Orange',
-		'Yellow',
-		'Green',
-		'Blue',
-		'Indigo',
-		'Violet',
-		'Black',
-		'White',
-		'Grey',
-		'Brown',
-		'Pink',
-		'Mauve',
-		'Beige',
-		'Aquamarine',
-		'Chartreuse',
-		'Bisque',
-		'Crimson',
-		'Fuchsia',
-		'Gold',
-		'Ivory',
-		'Khaki',
-		'Lavender',
-		'Lime',
-		'Magenta',
-		'Maroon',
-		'Navy',
-		'Olive',
-		'Plum',
-		'Silver',
-		'Tan',
-		'Teal',
-		'Turquoise',
+        'Red',
+        'Orange',
+        'Yellow',
+        'Green',
+        'Blue',
+        'Indigo',
+        'Violet',
+        'Black',
+        'White',
+        'Grey',
+        'Brown',
+        'Pink',
+        'Mauve',
+        'Beige',
+        'Aquamarine',
+        'Chartreuse',
+        'Bisque',
+        'Crimson',
+        'Fuchsia',
+        'Gold',
+        'Ivory',
+        'Khaki',
+        'Lavender',
+        'Lime',
+        'Magenta',
+        'Maroon',
+        'Navy',
+        'Olive',
+        'Plum',
+        'Silver',
+        'Tan',
+        'Teal',
+        'Turquoise',
     ];
 
     /**
@@ -137,8 +137,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     /**
      * Start a game
      *
-     * @param CommandEvent $event
-     * @param Queue        $queue
+     * @param Event $event
+     * @param Queue $queue
      */
     public function startGame(Event $event, Queue $queue)
     {
@@ -176,7 +176,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             $this->correctWireIndex = rand(0, 1);
         }
 
-        $this->sendMessage("\x01ACTION stuffs the bomb into {$this->bombNick}'s pants.  The display reads [\x02$this->seconds\x02] seconds.\x01");
+        $this->sendAction("stuffs the bomb into {$this->bombNick}'s pants.  The display reads [\x02$this->seconds\x02] seconds.");
 
         if ($this->wireCount === 1) {
             $this->sendMessage("Defuse the bomb by cutting the correct wire. There is {$this->getWireCountWord()} wire. It is {$this->listWires()}.  Use !cut <color>");
@@ -297,7 +297,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $rand = rand(0, 99);
 
         if ($rand === 0) {
-            $this->sendMessage("As {$oldnick} was tossing the bomb to {$this->bombNick}, it disarmed!  Everybody wins!");
+            $this->sendMessage("As {$oldNick} was tossing the bomb to {$this->bombNick}, it disarmed!  Everybody wins!");
             $this->endGame();
             return;
         }
@@ -328,6 +328,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
      * Check if a typed word is correct
      *
      * @param Event $event
+     * @param Queue $queue
      */
     public function handleCut(Event $event, Queue $queue)
     {
@@ -368,7 +369,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private function sendAlreadyRunningMessage(Event $event, Queue $queue)
     {
         if ($event->getSource() === $this->ircEvent->getSource()) {
-            $this->sendMessage("\x01ACTION points at the bulge in the back of {$this->bombNick}'s pants.\x01");
+            $this->sendAction("points at the bulge in the back of {$this->bombNick}'s pants.");
         } else {
             $queue->ircPrivmsg($event->getSource(), "I don't have a single bomb to spare. :-(");
         }
@@ -382,5 +383,15 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private function sendMessage($message)
     {
         $this->ircQueue->ircPrivmsg($this->ircEvent->getSource(), $message);
+    }
+
+    /**
+     * Send an action to the source of the current game
+     *
+     * @param string $action
+     */
+    private function sendAction($action)
+    {
+        $this->sendMessage("\x01ACTION {$action}\x01");
     }
 }

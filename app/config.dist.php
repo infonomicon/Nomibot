@@ -13,7 +13,7 @@ $nickname = '';
 $password = '';
 $channels = [];
 $prefix   = '!';
-$logfile  = __DIR__ . '/storage/logs/bot.log';
+$logfile  = __DIR__ . '/../storage/logs/bot.log';
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ $logfile  = __DIR__ . '/storage/logs/bot.log';
 */
 
 $wordlist = __DIR__ . '/wordlist.txt';
-$scores   = __DIR__ . '/storage/wordgame/scores.db';
+$scores   = __DIR__ . '/../storage/wordgame/scores.db';
 
 /*
 |--------------------------------------------------------------------------

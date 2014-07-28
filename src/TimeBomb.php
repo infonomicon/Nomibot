@@ -56,6 +56,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private $players = [];
 
     /**
+     * @var array
+     */
+    private $optouts = [];
+
+    /**
      * @var integer
      */
     private $wireCount;
@@ -113,6 +118,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             'command.timebomb' => 'startGame',
             'command.bombtoss' => 'handleToss',
             'command.cut' => 'handleCut',
+            'command.bombout' => 'handleOptOut',
+            'command.bombin' => 'handleOptIn',
         ];
     }
 
@@ -147,6 +154,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return;
         }
 
+        if (isset($this->optouts[strtolower($event->getNick())])) {
+            $queue->ircPrivmsg($event->getSource(), "You can't bomb anyone if you're not opted in!");
+            return;
+        }
+
         $params = $event->getCustomParams();
 
         $this->bombNick = isset($params[0]) ? trim($params[0]) : $event->getNick();
@@ -155,6 +167,12 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
             $this->bombNick = null;
             return;
+        }
+
+        if (isset($this->optouts[strtolower($this->bombNick)])) {
+            $optedout = $this->bombNick;
+            $this->bombNick = $event->getNick();
+            $queue->ircPrivmsg($event->getSource(), "{$optedout} isn't playing...");
         }
 
         $this->players[$event->getNick()] = 1;
@@ -287,6 +305,12 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $oldNick = $this->bombNick;
         $this->bombNick = trim($params[0]);
 
+        if (isset($this->optouts[strtolower($this->bombNick)])) {
+            $this->sendMessage("Sorry. It looks like {$this->bombNick} doesn't want the bomb.");
+            $this->bombNick = $oldNick;
+            return;
+        }
+
         if (strtolower($this->bombNick) === strtolower($event->getConnection()->getNickname())) {
             $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
             $this->endGame();
@@ -357,6 +381,34 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
                 $this->endGame();
             }
         }
+    }
+
+    /**
+     * Allow opting out of the game
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function handleOptOut(Event $event, Queue $queue)
+    {
+        $nick = strtolower($event->getNick());
+        $this->optouts[$nick] = true;
+
+        $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You've opted out of the timebomb game.");
+    }
+
+    /**
+     * Allow opting in to the game
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function handleOptIn(Event $event, Queue $queue)
+    {
+        $nick = strtolower($event->getNick());
+        unset($this->optouts[$nick]);
+
+        $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You've opted back in to the timebomb game.");
     }
 
     /**

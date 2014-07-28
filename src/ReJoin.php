@@ -36,7 +36,8 @@ class ReJoin extends AbstractPlugin
 
         if ($params['user'] === $event->getConnection()->getNickname()) {
             $queue->ircJoin($params['channel']);
-            $this->joinMessage = "Thanks, {$event->getNick()}. I needed that.";
+            //$this->joinMessage = "Thanks, {$event->getNick()}. I needed that.";
+            $this->joinMessage = "Please sir, may I have another!?";
         }
     }
 

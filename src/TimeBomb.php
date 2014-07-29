@@ -391,6 +391,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
      */
     public function handleOptOut(Event $event, Queue $queue)
     {
+        if ($this->isRunning()) {
+            $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: you coward! No opting out during a game!");
+            return;
+        }
+
         $nick = strtolower($event->getNick());
         $this->optouts[$nick] = true;
 

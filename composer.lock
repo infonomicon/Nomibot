@@ -161,12 +161,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-client-react.git",
-                "reference": "d122005400eff022670e147448d40c243ad107f8"
+                "reference": "9fd43f6aa8130e05e8baecaba2efeeb80c0dc818"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-client-react/zipball/d122005400eff022670e147448d40c243ad107f8",
-                "reference": "d122005400eff022670e147448d40c243ad107f8",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-client-react/zipball/9fd43f6aa8130e05e8baecaba2efeeb80c0dc818",
+                "reference": "9fd43f6aa8130e05e8baecaba2efeeb80c0dc818",
                 "shasum": ""
             },
             "require": {
@@ -176,10 +176,10 @@
                 "phergie/phergie-irc-parser": "dev-master",
                 "php": ">=5.3.3",
                 "psr/log": "~1.0",
-                "react/dns": "0.3.*",
-                "react/event-loop": "0.3.*",
+                "react/dns": ">=0.3.0,<0.5.0",
+                "react/event-loop": ">=0.3.0,<0.5.0",
                 "react/promise": "1.0.*",
-                "react/stream": "0.3.*"
+                "react/stream": ">=0.3.0,<0.5.0"
             },
             "require-dev": {
                 "phake/phake": "2.0.0-beta2",
@@ -205,7 +205,7 @@
                 "irc",
                 "react"
             ],
-            "time": "2014-07-09 03:24:31"
+            "time": "2014-07-30 02:21:20"
         },
         {
             "name": "phergie/phergie-irc-connection",

@@ -371,7 +371,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         for ($i = 0 ; $i < $this->wireCount ; $i++) {
             if ($wire === strtolower($this->wires[$i])) {
                 if ($this->correctWireIndex === $i) {
-                    $this->sendMessage("{$this->bombNick} cut the {$wire} wire.  This has defused the bomb with [\x02{$this->getSecondsRemaining()}\x02] seconds to spare!");
+                    $this->sendMessage("{$this->bombNick} cut the {$this->wires[$i]} wire.  This has defused the bomb with [\x02{$this->getSecondsRemaining()}\x02] seconds to spare!");
                 } elseif ($this->wireCount === 1) {
                     $queue->ircKick($event->getSource(), $this->bombNick, "\x02...*trollface.jpg*\x02");
                 } else {

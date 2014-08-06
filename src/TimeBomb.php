@@ -147,6 +147,31 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     }
 
     /**
+     * Handle bomb state request
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function handleState(Event $event, Queue $queue)
+    {
+        if (!$this->isRunning()) {
+            return;
+        }
+
+        $status = [
+            "Wires: {$this->listWires()}",
+            "Correct Wire: {$this->wires[$this->correctWireIndex]}",
+            "Seconds Remaining: {$this->getSecondsRemaining()}",
+            "Chance of Toss Explosion: {$this->tossExplosionChance}%",
+            "Holder: {$this->bombNick}",
+            "Players: " . implode(',', array_keys($this->players)),
+            "Optouts: " . implode(',', array_keys($this->optouts)),
+        ];
+
+        $queue->ircPrivmsg($event->getSource(), implode(' | ', $status));
+    }
+
+    /**
      * Start a game
      *
      * @param Event $event
@@ -365,7 +390,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return true;
         }
 
-        $this->tossExplosionChance += rand(0, 5);
+        $this->tossExplosionChance += rand(0, 10);
 
         return false;
     }

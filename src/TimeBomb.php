@@ -175,6 +175,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             $queue->ircPrivmsg($event->getSource(), "{$optedout} isn't playing...");
         }
 
+        if (!$this->isValidNick($this->bombNick)) {
+            $queue->ircPrivmsg($event->getSource(), "What kind of nick is {$this->bombNick}!?");
+            $this->bombNick = $event->getNick();
+        }
+
         $this->players[$event->getNick()] = 1;
         $this->players[$this->bombNick] = 1;
         $this->ircEvent = $event;
@@ -317,6 +322,12 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return;
         }
 
+        if (!$this->isValidNick($this->bombNick)) {
+            $queue->ircPrivmsg($event->getSource(), "What kind of nick is {$this->bombNick}!?");
+            $this->bombNick = $oldNick;
+            return;
+        }
+
         $this->players[$this->bombNick] = 1;
         $rand = rand(0, 99);
 
@@ -450,5 +461,22 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private function sendAction($action)
     {
         $this->sendMessage("\x01ACTION {$action}\x01");
+    }
+
+    /**
+     * Check if a nick is valid
+     * RFC 2812 section 2.3.1
+     *
+     * @param string $nick
+     * @return boolean
+     */
+    private function isValidNick($nick)
+    {
+        $letter = 'a-zA-Z';
+        $number = '0-9';
+        $special = preg_quote('[]\`_^{|}');
+        $pattern =  "(?:[$letter$special][$letter$number$special-]*)";
+
+        return preg_match($pattern, $nick);
     }
 }

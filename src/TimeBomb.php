@@ -63,6 +63,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     /**
      * @var integer
      */
+    private $tossExplosionChance = 1;
+
+    /**
+     * @var integer
+     */
     private $wireCount;
 
     /**
@@ -276,6 +281,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $this->ircQueue = null;
         $this->bombNick = null;
         $this->bombWires = null;
+        $this->tossExplosionChance = 1;
         $this->players = [];
     }
 
@@ -329,15 +335,14 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         $this->players[$this->bombNick] = 1;
-        $rand = rand(0, 99);
 
-        if ($rand === 0) {
+        if (rand(0, 99) === 0) {
             $this->sendMessage("As {$oldNick} was tossing the bomb to {$this->bombNick}, it disarmed!  Everybody wins!");
             $this->endGame();
             return;
         }
 
-        if ($rand === 1) {
+        if ($this->explodeOnToss()) {
             foreach ($this->players as $player => $val) {
                 $queue->ircKick($event->getSource(), $player, "\x02The bomb is fragile...*BOOM!*\x02");
             }
@@ -347,6 +352,22 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         $this->sendMessage("{$this->bombNick}: {$oldNick} set you up the bomb. You have [\x02{$this->getSecondsRemaining()}\x02] seconds left!");
+    }
+
+    /**
+     * Does the bomb explode during a toss
+     *
+     * @return boolean
+     */
+    private function explodeOnToss()
+    {
+        if (rand(1, 100) <= $this->tossExplosionChance) {
+            return true;
+        }
+
+        $this->tossExplosionChance += rand(0, 5);
+
+        return false;
     }
 
     /**

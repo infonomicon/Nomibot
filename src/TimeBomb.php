@@ -475,7 +475,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $letter = 'a-zA-Z';
         $number = '0-9';
         $special = preg_quote('[]\`_^{|}');
-        $pattern =  "(?:[$letter$special][$letter$number$special-]*)";
+        $pattern =  "/^(?:[$letter$special][$letter$number$special-]*)$/";
 
         return preg_match($pattern, $nick);
     }

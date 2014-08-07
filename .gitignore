@@ -2,3 +2,4 @@
 /vendor/
 /app/config.php
 /app/debug.log
+/.idea

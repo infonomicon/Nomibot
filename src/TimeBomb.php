@@ -429,6 +429,12 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         $nick = strtolower($event->getNick());
+
+        if (isset($this->optouts[$nick])) {
+            $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You're already opted out.");
+            return;
+        }
+
         $this->optouts[$nick] = true;
 
         $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You've opted out of the timebomb game.");
@@ -443,6 +449,12 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     public function handleOptIn(Event $event, Queue $queue)
     {
         $nick = strtolower($event->getNick());
+
+        if (!isset($this->optouts[$nick])) {
+            $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You're already opted in.");
+            return;
+        }
+
         unset($this->optouts[$nick]);
 
         $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You've opted back in to the timebomb game.");

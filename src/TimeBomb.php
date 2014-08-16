@@ -61,6 +61,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     private $optouts = [];
 
     /**
+     * @var string
+     */
+    private $optoutFilename;
+
+    /**
      * @var integer
      */
     private $tossExplosionChance = 1;
@@ -113,6 +118,15 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         'Teal',
         'Turquoise',
     ];
+
+    /**
+     * @param string $optoutFilename
+     */
+    public function __construct($optoutFilename)
+    {
+        $this->optoutFilename = $optoutFilename;
+        $this->loadOptouts();
+    }
 
     /**
      * {@inheritdoc}
@@ -416,6 +430,26 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     }
 
     /**
+     * Load optouts from the optout file
+     */
+    private function loadOptouts()
+    {
+        $optouts = json_decode(file_get_contents($this->optoutFilename), true);
+
+        foreach ($optouts as $optout) {
+            $this->optouts[$optout] = true;
+        }
+    }
+
+    /**
+     * Persist optouts to the optout file
+     */
+    private function saveOptouts()
+    {
+        file_put_contents($this->optoutFilename, json_encode(array_keys($this->optouts)));
+    }
+
+    /**
      * Allow opting out of the game
      *
      * @param Event $event
@@ -436,6 +470,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         $this->optouts[$nick] = true;
+        $this->saveOptouts();
 
         $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You've opted out of the timebomb game.");
     }
@@ -456,6 +491,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         unset($this->optouts[$nick]);
+        $this->saveOptouts();
 
         $queue->ircPrivmsg($event->getSource(), "{$event->getNick()}: You've opted back in to the timebomb game.");
     }

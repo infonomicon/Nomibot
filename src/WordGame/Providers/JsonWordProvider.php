@@ -53,7 +53,7 @@ class JsonWordProvider implements WordProvider
      */
     public function getWord()
     {
-        $current = $this->data[$this->data['current']];
+        $current = $this->data['words'][$this->data['current']];
 
         $word = new Word($current['word'], $current['hint']);
 

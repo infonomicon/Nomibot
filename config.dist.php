@@ -13,7 +13,7 @@ $nickname = '';
 $password = '';
 $channels = [];
 $prefix   = '!';
-$logfile  = __DIR__ . '/../storage/logs/bot.log';
+$logfile  = __DIR__.'/storage/logs/bot.log';
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +21,10 @@ $logfile  = __DIR__ . '/../storage/logs/bot.log';
 |--------------------------------------------------------------------------
 */
 
-$wordlist = __DIR__ . '/wordlist.txt';
-$scores   = __DIR__ . '/../storage/wordgame/scores.db';
-$quotes   = __DIR__ . '/../storage/quote/quotes.json';
-$bombouts = __DIR__ . '/../storage/timebomb/optouts.json';
+$wordlist = __DIR__.'/storage/wordgame/wordlist.json';
+$scores   = __DIR__.'/storage/wordgame/scores.db';
+$quotes   = __DIR__.'/storage/quote/quotes.json';
+$bombouts = __DIR__.'/storage/timebomb/optouts.json';
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
         new Infonomicon\IrcBot\TimeBomb($bombouts),
         new Infonomicon\IrcBot\Quote($quotes),
         new Infonomicon\IrcBot\WordGame\Plugin([
-            'word_provider' => new Infonomicon\IrcBot\WordGame\Providers\FileWordProvider($wordlist),
+            'word_provider' => new Infonomicon\IrcBot\WordGame\Providers\JsonWordProvider($wordlist),
             'scoreboard' => new Infonomicon\IrcBot\WordGame\Scoreboards\SqliteScoreboard($scores),
         ]),
     ],

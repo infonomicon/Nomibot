@@ -1,5 +1,4 @@
 /composer.phar
 /vendor/
-/app/config.php
-/app/debug.log
+/config.php
 /.idea

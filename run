@@ -1,9 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
-$config = require __DIR__ . '/app/config.php';
+$config = require __DIR__.'/config.php';
 
 $bot = new \Phergie\Irc\Bot\React\Bot;
 

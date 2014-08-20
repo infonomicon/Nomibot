@@ -130,6 +130,6 @@ class Quote extends AbstractPlugin
      */
     private function saveQuotes()
     {
-        file_put_contents($this->filename, json_encode($this->quotes));
+        file_put_contents($this->filename, json_encode($this->quotes, JSON_PRETTY_PRINT));
     }
 }

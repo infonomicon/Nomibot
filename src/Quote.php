@@ -59,8 +59,8 @@ class Quote extends AbstractPlugin
     /**
      * Get a quote
      *
-     * @param CommandEvent $event
-     * @param Queue        $queue
+     * @param Event $event
+     * @param Queue $queue
      */
     public function handleQuote(Event $event, Queue $queue)
     {

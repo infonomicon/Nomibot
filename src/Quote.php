@@ -36,10 +36,24 @@ class Quote extends AbstractPlugin
     public function getSubscribedEvents()
     {
         return [
+            'command.quotes' => 'listQuoteGroups',
             'command.quote' => 'handleQuote',
             'command.q' => 'handleQuote',
             'command.addquote' => 'handleAdd',
         ];
+    }
+
+    /**
+     * List the quote groups
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function listQuoteGroups(Event $event, Queue $queue)
+    {
+        $groups = implode(', ', array_keys($this->quotes));
+
+        $queue->ircPrivmsg($event->getSource(), "Quote groups: $groups.");
     }
 
     /**

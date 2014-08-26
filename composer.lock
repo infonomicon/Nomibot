@@ -252,12 +252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-event.git",
-                "reference": "f1ed51d7d878e5f9a6fbff3fb90c545df5a176b1"
+                "reference": "a3b8c86edd5bdea98dce9a59bcf08e4bb3609a2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-event/zipball/f1ed51d7d878e5f9a6fbff3fb90c545df5a176b1",
-                "reference": "f1ed51d7d878e5f9a6fbff3fb90c545df5a176b1",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-event/zipball/a3b8c86edd5bdea98dce9a59bcf08e4bb3609a2a",
+                "reference": "a3b8c86edd5bdea98dce9a59bcf08e4bb3609a2a",
                 "shasum": ""
             },
             "require": {
@@ -283,7 +283,7 @@
                 "event",
                 "irc"
             ],
-            "time": "2014-07-09 03:24:34"
+            "time": "2014-08-20 01:37:33"
         },
         {
             "name": "phergie/phergie-irc-generator",
@@ -405,12 +405,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-plugin-react-command.git",
-                "reference": "7ae84691ea669c6ad12d854f053617dadaf2310d"
+                "reference": "3a577a774e798d4179f31660baf47fd50b21fd96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-command/zipball/7ae84691ea669c6ad12d854f053617dadaf2310d",
-                "reference": "7ae84691ea669c6ad12d854f053617dadaf2310d",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-command/zipball/3a577a774e798d4179f31660baf47fd50b21fd96",
+                "reference": "3a577a774e798d4179f31660baf47fd50b21fd96",
                 "shasum": ""
             },
             "require": {
@@ -437,7 +437,7 @@
                 "plugin",
                 "react"
             ],
-            "time": "2014-07-09 03:24:38"
+            "time": "2014-08-26 00:32:39"
         },
         {
             "name": "phergie/phergie-irc-plugin-react-nickserv",
@@ -925,16 +925,16 @@
         },
         {
             "name": "ocramius/instantiator",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/Instantiator.git",
-                "reference": "a7abbb5fc9df6e7126af741dd6c140d1a7369435"
+                "reference": "e24a12178906ff2e7471b8aaf3a0eb789b59f881"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/Instantiator/zipball/a7abbb5fc9df6e7126af741dd6c140d1a7369435",
-                "reference": "a7abbb5fc9df6e7126af741dd6c140d1a7369435",
+                "url": "https://api.github.com/repos/Ocramius/Instantiator/zipball/e24a12178906ff2e7471b8aaf3a0eb789b59f881",
+                "reference": "e24a12178906ff2e7471b8aaf3a0eb789b59f881",
                 "shasum": ""
             },
             "require": {
@@ -976,7 +976,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2014-08-14 15:10:55"
+            "time": "2014-08-25 14:48:16"
         },
         {
             "name": "ocramius/lazy-map",
@@ -1286,16 +1286,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.2.0",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "58db726aa45fe26bca93f692cb3d77e9a46b7830"
+                "reference": "a33fa68ece9f8c68589bfc2da8d2794e27b820bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/58db726aa45fe26bca93f692cb3d77e9a46b7830",
-                "reference": "58db726aa45fe26bca93f692cb3d77e9a46b7830",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a33fa68ece9f8c68589bfc2da8d2794e27b820bc",
+                "reference": "a33fa68ece9f8c68589bfc2da8d2794e27b820bc",
                 "shasum": ""
             },
             "require": {
@@ -1356,7 +1356,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-08-08 05:13:30"
+            "time": "2014-08-18 05:12:30"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

@@ -24,6 +24,7 @@ $logfile  = __DIR__.'/storage/logs/bot.log';
 $wordlist = __DIR__.'/storage/wordgame/wordlist.json';
 $scores   = __DIR__.'/storage/wordgame/scores.db';
 $quotes   = __DIR__.'/storage/quote/quotes.json';
+$jokes    = __DIR__.'/storage/jokes.json';
 $bombouts = __DIR__.'/storage/timebomb/optouts.json';
 
 /*
@@ -58,11 +59,14 @@ return [
         new Infonomicon\IrcBot\Say,
         new Infonomicon\IrcBot\Ping,
         new Infonomicon\IrcBot\Sheep,
+        new Infonomicon\IrcBot\WellDone,
         new Infonomicon\IrcBot\FlipGoat,
         new Infonomicon\IrcBot\Omniscan,
+        new Infonomicon\IrcBot\ThisIsNot,
         new Infonomicon\IrcBot\DangerZone,
         new Infonomicon\IrcBot\TimeBomb($bombouts),
         new Infonomicon\IrcBot\Quote($quotes),
+        new Infonomicon\IrcBot\Joke($jokes),
         new Infonomicon\IrcBot\WordGame\Plugin([
             'word_provider' => new Infonomicon\IrcBot\WordGame\Providers\JsonWordProvider($wordlist),
             'scoreboard' => new Infonomicon\IrcBot\WordGame\Scoreboards\SqliteScoreboard($scores),

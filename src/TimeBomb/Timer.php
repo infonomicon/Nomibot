@@ -23,6 +23,13 @@ class Timer
     public function __construct($seconds)
     {
         $this->seconds = $seconds;
+    }
+
+    /**
+     * Start the timer
+     */
+    public function start()
+    {
         $this->startTime = microtime(true);
     }
 

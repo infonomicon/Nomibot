@@ -51,9 +51,13 @@ class Quote extends AbstractPlugin
      */
     public function listQuoteGroups(Event $event, Queue $queue)
     {
-        $groups = implode(', ', array_keys($this->quotes));
+        $groups = 'Quote groups: ';
 
-        $queue->ircPrivmsg($event->getSource(), "Quote groups: $groups.");
+        foreach ($this->quotes as $name => $quotes) {
+            $groups .= $name . '(' . count($quotes) . ') ';
+        }
+
+        $queue->ircPrivmsg($event->getSource(), trim($groups));
     }
 
     /**

@@ -9,11 +9,10 @@
         "phergie/phergie-irc-plugin-react-pong": "dev-master",
         "phergie/phergie-irc-plugin-react-nickserv": "dev-master",
         "phergie/phergie-irc-plugin-react-autojoin": "dev-master",
-        "phergie/phergie-irc-plugin-react-command": "dev-master",
-        "react/socket-client": "0.3.*"
+        "phergie/phergie-irc-plugin-react-command": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.2",
+        "phpunit/phpunit": "~4.3",
         "mockery/mockery": "~0.9"
     },
     "minimum-stability": "dev",

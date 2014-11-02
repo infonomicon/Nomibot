@@ -31,7 +31,7 @@ class FlipGoat extends AbstractPlugin
 
         $queue->ircPrivmsg($channel, "========)(========");
         usleep(50000);
-        $queue->ircPrivmsg($channel, "====)        (====");
+        $queue->ircPrivmsg($channel, "#===)        (====");
         usleep(50000);
         $queue->ircPrivmsg($channel, "====)        (====");
         usleep(50000);

@@ -17,17 +17,11 @@ class Quote extends AbstractPlugin
     private $filename;
 
     /**
-     * @var array
-     */
-    private $quotes = [];
-
-    /**
      * @param string $filename
      */
     public function __construct($filename)
     {
         $this->filename = $filename;
-        $this->loadQuotes();
     }
 
     /**
@@ -51,9 +45,11 @@ class Quote extends AbstractPlugin
      */
     public function listQuoteGroups(Event $event, Queue $queue)
     {
+        $quoteData = $this->loadQuotes();
+
         $groups = 'Quote groups: ';
 
-        foreach ($this->quotes as $name => $quotes) {
+        foreach ($quoteData as $name => $quotes) {
             $groups .= $name . '(' . count($quotes) . ') ';
         }
 
@@ -103,14 +99,16 @@ class Quote extends AbstractPlugin
      */
     private function getRandomQuote($section = null)
     {
+        $quoteData = $this->loadQuotes();
+
         if ($section === null) {
             $pool = [];
 
-            foreach ($this->quotes as $group) {
+            foreach ($quoteData as $group) {
                 $pool = array_merge($pool, $group);
             }
-        } elseif (isset($this->quotes[$section])) {
-            $pool = $this->quotes[$section];
+        } elseif (isset($quoteData[$section])) {
+            $pool = $quoteData[$section];
         } else {
             return false;
         }
@@ -126,13 +124,15 @@ class Quote extends AbstractPlugin
      */
     private function addQuote($section, $quote)
     {
-        if (!isset($this->quotes[$section])) {
-            $this->quotes[$section] = [];
+        $quoteData = $this->loadQuotes();
+
+        if (!isset($quoteData[$section])) {
+            $quoteData[$section] = [];
         }
 
-        $this->quotes[$section][] = $quote;
+        $quoteData[$section][] = $quote;
 
-        $this->saveQuotes();
+        $this->saveQuotes($quoteData);
     }
 
     /**
@@ -140,14 +140,14 @@ class Quote extends AbstractPlugin
      */
     private function loadQuotes()
     {
-        $this->quotes = json_decode(file_get_contents($this->filename), true);
+        return json_decode(file_get_contents($this->filename), true);
     }
 
     /**
      * Save the quote list
      */
-    private function saveQuotes()
+    private function saveQuotes($quoteData)
     {
-        file_put_contents($this->filename, json_encode($this->quotes, JSON_PRETTY_PRINT));
+        file_put_contents($this->filename, json_encode($quoteData, JSON_PRETTY_PRINT));
     }
 }

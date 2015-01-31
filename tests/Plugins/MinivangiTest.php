@@ -1,6 +1,6 @@
 <?php
 
-namespace Infonomicon\IrcBot;
+namespace Nomibot\Plugins;
 
 use Mockery as m;
 use Phergie\Irc\Bot\React\AbstractPlugin;

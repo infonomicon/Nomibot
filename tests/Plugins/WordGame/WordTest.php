@@ -1,6 +1,6 @@
 <?php
 
-namespace Infonomicon\IrcBot\WordGame;
+namespace Nomibot\Plugins\WordGame;
 
 class WordTest extends \PHPUnit_Framework_TestCase
 {

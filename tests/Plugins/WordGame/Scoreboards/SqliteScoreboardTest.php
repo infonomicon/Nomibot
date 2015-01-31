@@ -1,9 +1,9 @@
 <?php
 
-namespace Infonomicon\IrcBot\WordGame\Scoreboards;
+namespace Nomibot\Plugins\WordGame\Scoreboards;
 
-use Infonomicon\IrcBot\WordGame\Stats;
-use Infonomicon\IrcBot\WordGame\Scoreboard;
+use Nomibot\Plugins\WordGame\Stats;
+use Nomibot\Plugins\WordGame\Scoreboard;
 
 class SqliteScoreboardTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Infonomicon\IrcBot\WordGame\Providers;
+namespace Nomibot\Plugins\WordGame\Providers;
 
-use Infonomicon\IrcBot\WordGame\Word;
-use Infonomicon\IrcBot\WordGame\WordProvider;
+use Nomibot\Plugins\WordGame\Word;
+use Nomibot\Plugins\WordGame\WordProvider;
 
 class FileWordProviderTest extends \PHPUnit_Framework_TestCase
 {

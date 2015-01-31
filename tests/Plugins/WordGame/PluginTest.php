@@ -1,6 +1,6 @@
 <?php
 
-namespace Infonomicon\IrcBot\WordGame;
+namespace Nomibot\Plugins\WordGame;
 
 use Mockery as m;
 use Phergie\Irc\Bot\React\AbstractPlugin;
@@ -18,8 +18,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructor()
     {
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
 
         $game = new Plugin([
             'word_provider' => $provider,
@@ -39,7 +39,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testConstructorFails_MissingWordProvider()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
 
         $game = new Plugin([
             'scoreboard' => $sb,
@@ -49,7 +49,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testConstructorFails_MissingScoreboard()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
 
         $game = new Plugin([
             'word_provider' => $provider,
@@ -59,8 +59,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testConstructorFails_InvalidWordProvider()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
         $game = new Plugin([
             'word_provider' => 'fail',
             'scoreboard' => $sb,
@@ -70,7 +70,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testConstructorFails_InvalidScoreboard()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
         $game = new Plugin([
             'word_provider' => $provider,
             'scoreboard' => 'fail',
@@ -79,8 +79,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSubscribedEvents()
     {
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
 
         $game = new Plugin([
             'word_provider' => $provider,
@@ -96,16 +96,16 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     public function testStartGame()
     {
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
-        $word = m::mock('Infonomicon\IrcBot\WordGame\Word');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
+        $word = m::mock('Nomibot\Plugins\WordGame\Word');
         $word->shouldReceive('getScrambled')->andReturn('sett');
         $word->shouldReceive('__toString')->andReturn('test');
         $word->shouldReceive('getHint')->andReturn('this is only a...');
         $word->shouldReceive('getFirst')->with(1)->andReturn('t');
         $word->shouldReceive('getFirst')->with(2)->andReturn('te');
         $provider->shouldReceive('getWord')->andReturn($word);
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
-        $stats = m::mock('Infonomicon\IrcBot\WordGame\Stats');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
+        $stats = m::mock('Nomibot\Plugins\WordGame\Stats');
         $stats->shouldReceive('getNick')->andReturn('tester');
         $stats->shouldReceive('getTotal')->andReturn(2);
         $stats->shouldReceive('getToday')->andReturn(1);
@@ -138,16 +138,16 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     public function testGameTimeUp()
     {
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
-        $word = m::mock('Infonomicon\IrcBot\WordGame\Word');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
+        $word = m::mock('Nomibot\Plugins\WordGame\Word');
         $word->shouldReceive('getScrambled')->andReturn('sett');
         $word->shouldReceive('__toString')->andReturn('test');
         $word->shouldReceive('getHint')->andReturn('this is only a...');
         $word->shouldReceive('getFirst')->with(1)->andReturn('t');
         $word->shouldReceive('getFirst')->with(2)->andReturn('te');
         $provider->shouldReceive('getWord')->andReturn($word);
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
-        $stats = m::mock('Infonomicon\IrcBot\WordGame\Stats');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
+        $stats = m::mock('Nomibot\Plugins\WordGame\Stats');
         $stats->shouldReceive('getNick')->andReturn('tester');
         $stats->shouldReceive('getTotal')->andReturn(2);
         $stats->shouldReceive('getToday')->andReturn(1);
@@ -187,16 +187,16 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     public function testGameGuesses()
     {
-        $provider = m::mock('Infonomicon\IrcBot\WordGame\WordProvider');
-        $word = m::mock('Infonomicon\IrcBot\WordGame\Word');
+        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
+        $word = m::mock('Nomibot\Plugins\WordGame\Word');
         $word->shouldReceive('getScrambled')->andReturn('sett');
         $word->shouldReceive('__toString')->andReturn('test');
         $word->shouldReceive('getHint')->andReturn('this is only a...');
         $word->shouldReceive('getFirst')->with(1)->andReturn('t');
         $word->shouldReceive('getFirst')->with(2)->andReturn('te');
         $provider->shouldReceive('getWord')->andReturn($word);
-        $sb = m::mock('Infonomicon\IrcBot\WordGame\Scoreboard');
-        $stats = m::mock('Infonomicon\IrcBot\WordGame\Stats');
+        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
+        $stats = m::mock('Nomibot\Plugins\WordGame\Stats');
         $stats->shouldReceive('getNick')->andReturn('tester');
         $stats->shouldReceive('getTotal')->andReturn(2);
         $stats->shouldReceive('getToday')->andReturn(1);

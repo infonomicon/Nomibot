@@ -1,16 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__.'/vendor/autoload.php';
+require 'vendor/autoload.php';
 
-$config = require __DIR__.'/config.php';
+$app = new Nomibot\Application;
 
-$bot = new \Phergie\Irc\Bot\React\Bot;
+require 'config/services.php';
 
-$bot->setConfig($config);
-
-$logger = $bot->getLogger();
-$logger->popHandler();
-$logger->pushHandler(new Monolog\Handler\RotatingFileHandler($config['logfile'], 7));
-
-$bot->run();
+$app->run();

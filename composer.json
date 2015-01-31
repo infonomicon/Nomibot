@@ -1,10 +1,11 @@
 {
     "autoload": {
         "psr-4": {
-            "Infonomicon\\IrcBot\\": "src"
+            "Nomibot\\": "src"
         }
     },
     "require": {
+        "league/container": "~1.2",
         "phergie/phergie-irc-bot-react": "~1.0",
         "phergie/phergie-irc-plugin-react-pong": "~1.1",
         "phergie/phergie-irc-plugin-react-nickserv": "~1.1",

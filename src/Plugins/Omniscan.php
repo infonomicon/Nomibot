@@ -13,7 +13,25 @@ class Omniscan extends AbstractPlugin
      */
     public function getSubscribedEvents()
     {
-        return ['command.omniscan' => 'handle'];
+        return [
+            'command.omniscan' => 'handle',
+            'command.omniscan.help' => 'help',
+        ];
+    }
+
+    /**
+     * Show help text
+     *
+     * @param CommandEvent $event
+     * @param Queue        $queue
+     */
+    public function help(CommandEvent $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "omniscan [nick:optional]");
+        $queue->ircPrivmsg($channel, "========================");
+        $queue->ircPrivmsg($channel, "Omniscans you, or the specified nick.");
     }
 
     /**

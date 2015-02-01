@@ -36,6 +36,7 @@ class Joke extends AbstractPlugin implements LoopAwareInterface
         return [
             'command.joke' => 'handleJoke',
             'command.j' => 'handleJoke',
+            'command.joke.help' => 'help',
         ];
     }
 
@@ -45,6 +46,21 @@ class Joke extends AbstractPlugin implements LoopAwareInterface
     public function setLoop(LoopInterface $loop)
     {
         $this->loop = $loop;
+    }
+
+    /**
+     * Show help text
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function help(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "joke (no arguments)");
+        $queue->ircPrivmsg($channel, "===================");
+        $queue->ircPrivmsg($channel, "Tells a silly joke!");
     }
 
     /**

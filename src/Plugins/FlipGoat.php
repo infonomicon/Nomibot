@@ -13,7 +13,25 @@ class FlipGoat extends AbstractPlugin
      */
     public function getSubscribedEvents()
     {
-        return ['command.flipgoat' => 'handle'];
+        return [
+            'command.flipgoat' => 'handle',
+            'command.flipgoat.help' => 'help',
+        ];
+    }
+
+    /**
+     * Show help text
+     *
+     * @param CommandEvent $event
+     * @param Queue $queue
+     */
+    public function help(CommandEvent $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "flipgoat (no arguments)");
+        $queue->ircPrivmsg($channel, "=======================");
+        $queue->ircPrivmsg($channel, "Flips the goat!");
     }
 
     /**

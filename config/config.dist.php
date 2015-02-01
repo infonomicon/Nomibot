@@ -45,6 +45,7 @@ return [
         'Phergie\Irc\Plugin\React\NickServ\Plugin',
         'Phergie\Irc\Plugin\React\AutoJoin\Plugin',
         'Phergie\Irc\Plugin\React\Command\Plugin',
+        'Phergie\Irc\Plugin\React\CommandHelp\Plugin',
         'Nomibot\Plugins\ReJoin',
         'Nomibot\Plugins\Say',
         'Nomibot\Plugins\Ping',

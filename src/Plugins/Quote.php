@@ -31,7 +31,56 @@ class Quote extends AbstractPlugin
             'command.quote' => 'handleQuote',
             'command.q' => 'handleQuote',
             'command.addquote' => 'handleAdd',
+            'command.quotes.help' => 'helpQuotes',
+            'command.quote.help' => 'helpQuote',
+            'command.q.help' => 'helpQuote',
+            'command.addquote.help' => 'helpAddQuote',
         ];
+    }
+
+    /**
+     * Show help text for quotes command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpQuotes(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "quotes (no arguments)");
+        $queue->ircPrivmsg($channel, "=====================");
+        $queue->ircPrivmsg($channel, "Lists current quote groups.");
+    }
+
+    /**
+     * Show help text for quote command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpQuote(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "quote [group:optional]");
+        $queue->ircPrivmsg($channel, "======================");
+        $queue->ircPrivmsg($channel, "Prints a random quote, optionally from a specified group.");
+    }
+
+    /**
+     * Show help text for addquote command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpAddQuote(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "addquote [group] [quote]");
+        $queue->ircPrivmsg($channel, "========================");
+        $queue->ircPrivmsg($channel, "Add a quote to a group.  Make sure the quote parameter is in double-quotes if it contains spaces.");
     }
 
     /**

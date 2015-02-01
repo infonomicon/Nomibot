@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "91d27a5ed7eaceb48cfda94e4788b7dd",
+    "hash": "3a16b3da14b52c4b5e45dfadce12ee04",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -495,6 +495,47 @@
                 "react"
             ],
             "time": "2014-12-15 02:26:15"
+        },
+        {
+            "name": "phergie/phergie-irc-plugin-react-commandhelp",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phergie/phergie-irc-plugin-react-commandhelp.git",
+                "reference": "da3fcbf1314aa6f69bbb382f7935a9322c2b86f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-commandhelp/zipball/da3fcbf1314aa6f69bbb382f7935a9322c2b86f6",
+                "reference": "da3fcbf1314aa6f69bbb382f7935a9322c2b86f6",
+                "shasum": ""
+            },
+            "require": {
+                "phergie/phergie-irc-bot-react": "~1",
+                "phergie/phergie-irc-plugin-react-command": "~1"
+            },
+            "require-dev": {
+                "phake/phake": "2.0.0-beta2",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phergie\\Irc\\Plugin\\React\\CommandHelp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "description": "Phergie plugin for providing usage information for available bot commands to users",
+            "keywords": [
+                "bot",
+                "irc",
+                "plugin",
+                "react"
+            ],
+            "time": "2014-12-24 01:13:33"
         },
         {
             "name": "phergie/phergie-irc-plugin-react-nickserv",

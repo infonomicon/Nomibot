@@ -8,8 +8,6 @@ use Phergie\Irc\Client\React\LoopAwareInterface;
 use Phergie\Irc\Event\EventInterface as Event;
 use Phergie\Irc\Plugin\React\Command\CommandEventInterface as CommandEvent;
 use React\EventLoop\LoopInterface;
-use Nomibot\Plugins\WordGame\WordProvider;
-use Nomibot\Plugins\WordGame\Scoreboard;
 
 class Plugin extends AbstractPlugin implements LoopAwareInterface
 {
@@ -86,6 +84,8 @@ class Plugin extends AbstractPlugin implements LoopAwareInterface
         return [
             'command.word' => 'startGame',
             'command.score' => 'showTopTen',
+            'command.word.help' => 'helpWord',
+            'command.score.help' => 'helpScore',
             'irc.received.privmsg' => 'checkWord',
         ];
     }
@@ -96,6 +96,36 @@ class Plugin extends AbstractPlugin implements LoopAwareInterface
     public function setLoop(LoopInterface $loop)
     {
         $this->loop = $loop;
+    }
+
+    /**
+     * Show help text for word command
+     *
+     * @param CommandEvent $event
+     * @param Queue        $queue
+     */
+    public function helpWord(CommandEvent $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "word (no arguments)");
+        $queue->ircPrivmsg($channel, "===================");
+        $queue->ircPrivmsg($channel, "Starts a word scramble game. When the game is running, you may enter in your guesses.");
+    }
+
+    /**
+     * Show help text for score command
+     *
+     * @param CommandEvent $event
+     * @param Queue        $queue
+     */
+    public function helpScore(CommandEvent $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "score (no arguments)");
+        $queue->ircPrivmsg($channel, "====================");
+        $queue->ircPrivmsg($channel, "Shows the score board for the word game winners.");
     }
 
     /**

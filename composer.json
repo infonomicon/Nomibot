@@ -10,7 +10,8 @@
         "phergie/phergie-irc-plugin-react-pong": "~1.1",
         "phergie/phergie-irc-plugin-react-nickserv": "~1.1",
         "phergie/phergie-irc-plugin-react-autojoin": "~1.0",
-        "phergie/phergie-irc-plugin-react-command": "~1.1"
+        "phergie/phergie-irc-plugin-react-command": "~1.1",
+        "phergie/phergie-irc-plugin-react-commandhelp": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.4",

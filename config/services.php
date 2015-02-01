@@ -16,6 +16,21 @@ $app->singleton('Phergie\Irc\Plugin\React\AutoJoin\Plugin')
 $app->singleton('Phergie\Irc\Plugin\React\Command\Plugin')
     ->withArgument($app['config']['command']);
 
+$app->singleton('Phergie\Irc\Plugin\React\CommandHelp\Plugin', 'Phergie\Irc\Plugin\React\CommandHelp\Plugin', function () use ($app) {
+    $plugins = [];
+
+    foreach ($app['config']['enabled_plugins'] as $plugin) {
+        if (strpos($plugin, 'Nomibot\Plugins') === 0) {
+            $plugins[] = $plugin;
+        }
+    }
+
+    return new Phergie\Irc\Plugin\React\CommandHelp\Plugin([
+        'plugins' => $plugins,
+        'listText' => 'Available commands: ',
+    ]);
+});
+
 $app->singleton('Nomibot\Plugins\ReJoin');
 $app->singleton('Nomibot\Plugins\Say');
 $app->singleton('Nomibot\Plugins\Ping');

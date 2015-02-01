@@ -134,6 +134,11 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             'command.cut' => 'handleCut',
             'command.bombout' => 'handleOptOut',
             'command.bombin' => 'handleOptIn',
+            'command.timebomb.help' => 'helpTimeBomb',
+            'command.bombtoss.help' => 'helpBombToss',
+            'command.cut.help' => 'helpCut',
+            'command.bombout.help' => 'helpBombOut',
+            'command.bombin.help' => 'helpBombIn',
         ];
     }
 
@@ -143,6 +148,81 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
     public function setLoop(LoopInterface $loop)
     {
         $this->loop = $loop;
+    }
+
+    /**
+     * Show help text for timebomb command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpTimeBomb(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "timebomb [nick:optional]");
+        $queue->ircPrivmsg($channel, "========================");
+        $queue->ircPrivmsg($channel, "Start a timebomb game. It starts with you, unless another nick is specified.");
+    }
+
+    /**
+     * Show help text for bombtoss command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpBombToss(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "bombtoss [nick]");
+        $queue->ircPrivmsg($channel, "===============");
+        $queue->ircPrivmsg($channel, "When a timebomb game is running, and you have the bomb, this will pass it to another player.");
+    }
+
+    /**
+     * Show help text for cut command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpCut(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "cut [color]");
+        $queue->ircPrivmsg($channel, "===========");
+        $queue->ircPrivmsg($channel, "When a timebomb game is running, and you have the bomb, this will let you cut a wire in an attempt to defuse it.");
+    }
+
+    /**
+     * Show help text for bombout command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpBombOut(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "bombout (no arguments)");
+        $queue->ircPrivmsg($channel, "======================");
+        $queue->ircPrivmsg($channel, "Opt-out of the timebomb game.");
+    }
+
+    /**
+     * Show help text for bombin command
+     *
+     * @param Event $event
+     * @param Queue $queue
+     */
+    public function helpBombIn(Event $event, Queue $queue)
+    {
+        $channel = $event->getSource();
+
+        $queue->ircPrivmsg($channel, "bombin (no arguments)");
+        $queue->ircPrivmsg($channel, "=====================");
+        $queue->ircPrivmsg($channel, "Opt-in to the timebomb game.");
     }
 
     /**
@@ -529,7 +609,8 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
 
     /**
      * Check if a nick is valid
-     * RFC 2812 section 2.3.1
+     *
+     * @see RFC 2812 section 2.3.1
      *
      * @param string $nick
      * @return boolean

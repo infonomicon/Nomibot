@@ -386,7 +386,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
             return;
         }
 
-        if ($event->getNick() !== $this->bombNick) {
+        if (strtolower($event->getNick()) !== strtolower($this->bombNick)) {
             $this->sendMessage("Hey! No groping {$this->bombNick} while they have the bomb!");
             return;
         }

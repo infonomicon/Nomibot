@@ -22,9 +22,10 @@ class OmniscanTest extends \PHPUnit_Framework_TestCase
     {
         $plugin = new Omniscan;
 
-        $this->assertEquals($plugin->getSubscribedEvents(), [
-            'command.omniscan' => 'handle',
-        ]);
+        $events = array_keys($plugin->getSubscribedEvents());
+
+        $this->assertContains('command.omniscan', $events);
+        $this->assertContains('command.omniscan.help', $events);
     }
 
     public function testHandle()

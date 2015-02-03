@@ -7,10 +7,9 @@ use Nomibot\Plugins\WordGame\Scoreboard;
 
 class SqliteScoreboardTest extends \PHPUnit_Framework_TestCase
 {
-    public function tearDown()
+    public function setUp()
     {
         $db = new \PDO('sqlite:' . __DIR__ . '/stubs/test.db');
-        $db->query('DROP TABLE scores');
         $db->query('CREATE TABLE scores (nick TEXT, scored_at DATETIME)');
         $db->query("INSERT INTO scores (nick, scored_at) VALUES ('tester2', '2014-01-30 10:12:35')");
         $db->query("INSERT INTO scores (nick, scored_at) VALUES ('tester2', '2014-01-30 10:13:35')");
@@ -21,6 +20,12 @@ class SqliteScoreboardTest extends \PHPUnit_Framework_TestCase
         $db->query("INSERT INTO scores (nick, scored_at) VALUES ('tester', '2014-01-30 10:09:35')");
         $db->query("INSERT INTO scores (nick, scored_at) VALUES ('tester', '2014-01-30 10:10:35')");
         $db->query("INSERT INTO scores (nick, scored_at) VALUES ('tester', '2014-01-30 10:11:35')");
+    }
+
+    public function tearDown()
+    {
+        $db = new \PDO('sqlite:' . __DIR__ . '/stubs/test.db');
+        $db->query('DROP TABLE scores');
     }
 
     public function testConstructorWithDefault()

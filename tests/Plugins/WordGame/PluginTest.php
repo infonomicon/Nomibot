@@ -21,60 +21,10 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
         $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
 
-        $game = new Plugin([
-            'word_provider' => $provider,
-            'scoreboard' => $sb,
-        ]);
+        $game = new Plugin($provider, $sb);
 
         $this->assertTrue($game instanceof AbstractPlugin);
         $this->assertTrue($game instanceof LoopAwareInterface);
-    }
-
-    public function testConstructorFails_MissingOptions()
-    {
-        $this->setExpectedException('InvalidArgumentException');
-        $game = new Plugin([]);
-    }
-
-    public function testConstructorFails_MissingWordProvider()
-    {
-        $this->setExpectedException('InvalidArgumentException');
-        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
-
-        $game = new Plugin([
-            'scoreboard' => $sb,
-        ]);
-    }
-
-    public function testConstructorFails_MissingScoreboard()
-    {
-        $this->setExpectedException('InvalidArgumentException');
-        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
-
-        $game = new Plugin([
-            'word_provider' => $provider,
-        ]);
-    }
-
-    public function testConstructorFails_InvalidWordProvider()
-    {
-        $this->setExpectedException('InvalidArgumentException');
-        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
-        $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
-        $game = new Plugin([
-            'word_provider' => 'fail',
-            'scoreboard' => $sb,
-        ]);
-    }
-
-    public function testConstructorFails_InvalidScoreboard()
-    {
-        $this->setExpectedException('InvalidArgumentException');
-        $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
-        $game = new Plugin([
-            'word_provider' => $provider,
-            'scoreboard' => 'fail',
-        ]);
     }
 
     public function testGetSubscribedEvents()
@@ -82,16 +32,15 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $provider = m::mock('Nomibot\Plugins\WordGame\WordProvider');
         $sb = m::mock('Nomibot\Plugins\WordGame\Scoreboard');
 
-        $game = new Plugin([
-            'word_provider' => $provider,
-            'scoreboard' => $sb,
-        ]);
+        $game = new Plugin($provider, $sb);
 
-        $this->assertEquals($game->getSubscribedEvents(), [
-            'command.word' => 'startGame',
-            'command.score' => 'showTopTen',
-            'irc.received.privmsg' => 'checkWord',
-        ]);
+        $events = array_keys($game->getSubscribedEvents());
+
+        $this->assertContains('command.word', $events);
+        $this->assertContains('command.score', $events);
+        $this->assertContains('command.word.help', $events);
+        $this->assertContains('command.score.help', $events);
+        $this->assertContains('irc.received.privmsg', $events);
     }
 
     public function testStartGame()
@@ -112,10 +61,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $sb->shouldReceive('getStats')->andReturn($stats);
         $sb->shouldReceive('getTopTen')->andReturn([$stats]);
         $sb->shouldReceive('addWin');
-        $game = new Plugin([
-            'word_provider' => $provider,
-            'scoreboard' => $sb,
-        ]);
+        $game = new Plugin($provider, $sb);
         $loop = m::mock('React\EventLoop\LoopInterface');
         $loop->shouldReceive('addPeriodicTimer')->with(15, [$game, 'sendNextUpdate'])->andReturn(m::mock('React\EventLoop\Timer\TimerInterface'));
         $loop->shouldReceive('cancelTimer');
@@ -154,10 +100,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $sb->shouldReceive('getStats')->andReturn($stats);
         $sb->shouldReceive('getTopTen')->andReturn([$stats]);
         $sb->shouldReceive('addWin');
-        $game = new Plugin([
-            'word_provider' => $provider,
-            'scoreboard' => $sb,
-        ]);
+        $game = new Plugin($provider, $sb);
         $loop = m::mock('React\EventLoop\LoopInterface');
         $loop->shouldReceive('addPeriodicTimer')->with(15, [$game, 'sendNextUpdate'])->andReturn(m::mock('React\EventLoop\Timer\TimerInterface'));
         $loop->shouldReceive('cancelTimer');
@@ -203,10 +146,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $sb->shouldReceive('getStats')->andReturn($stats);
         $sb->shouldReceive('getTopTen')->andReturn([$stats]);
         $sb->shouldReceive('addWin')->once()->with('tester');
-        $game = new Plugin([
-            'word_provider' => $provider,
-            'scoreboard' => $sb,
-        ]);
+        $game = new Plugin($provider, $sb);
         $loop = m::mock('React\EventLoop\LoopInterface');
         $loop->shouldReceive('addPeriodicTimer')->with(15, [$game, 'sendNextUpdate'])->andReturn(m::mock('React\EventLoop\Timer\TimerInterface'));
         $loop->shouldReceive('cancelTimer');

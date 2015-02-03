@@ -39,7 +39,6 @@ $app->singleton('Phergie\Irc\Plugin\React\CommandHelp\Plugin', function () use (
 
 $app->singleton('Nomibot\Plugins\ReJoin');
 $app->singleton('Nomibot\Plugins\Say');
-$app->singleton('Nomibot\Plugins\Ping');
 $app->singleton('Nomibot\Plugins\Sheep');
 $app->singleton('Nomibot\Plugins\WellDone');
 $app->singleton('Nomibot\Plugins\FlipGoat');

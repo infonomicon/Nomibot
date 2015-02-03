@@ -50,7 +50,6 @@ return [
         'Phergie\Irc\Plugin\React\CommandHelp\Plugin',
         'Nomibot\Plugins\ReJoin',
         'Nomibot\Plugins\Say',
-        'Nomibot\Plugins\Ping',
         'Nomibot\Plugins\Sheep',
         'Nomibot\Plugins\WellDone',
         'Nomibot\Plugins\FlipGoat',

@@ -31,6 +31,9 @@ class ThisIsNot extends AbstractPlugin
             case ':q':
             case ':w':
             case ':wq':
+            case ':q!':
+            case ':w!':
+            case ':wq!':
                 $message = 'This is not vi.';
                 break;
             default:

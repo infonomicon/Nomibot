@@ -9,6 +9,7 @@ class SqliteScoreboardTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        @file_put_contents(__DIR__ . '/stubs/test.db', null);
         $db = new \PDO('sqlite:' . __DIR__ . '/stubs/test.db');
         $db->query('CREATE TABLE scores (nick TEXT, scored_at DATETIME)');
         $db->query("INSERT INTO scores (nick, scored_at) VALUES ('tester2', '2014-01-30 10:12:35')");
@@ -24,8 +25,7 @@ class SqliteScoreboardTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        $db = new \PDO('sqlite:' . __DIR__ . '/stubs/test.db');
-        $db->query('DROP TABLE scores');
+        @unlink(__DIR__ . '/stubs/test.db');
     }
 
     public function testConstructorWithDefault()

@@ -2,8 +2,14 @@
 
 $app['config'] = require 'config.php';
 
+$app->add('irc.bot', 'Phergie\Irc\Bot\React\Bot', true);
+
 $app->add('irc.connection', 'Phergie\Irc\Connection', true)
     ->withArgument($app['config']['connection']);
+
+$app->add('logger.handler', 'Monolog\Handler\RotatingFileHandler')
+    ->withArgument($app['config']['logfile'])
+    ->withArgument($app['config']['logrotation']);
 
 $app->singleton('Phergie\Irc\Plugin\React\Pong\Plugin');
 

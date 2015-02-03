@@ -3,7 +3,6 @@
 namespace Nomibot;
 
 use League\Container\Container;
-use Monolog\Handler\RotatingFileHandler;
 use Phergie\Irc\Bot\React\Bot;
 
 class Application extends Container
@@ -54,7 +53,7 @@ class Application extends Container
     {
         $logger = $this->bot->getLogger();
         $logger->popHandler();
-        $logger->pushHandler(new RotatingFileHandler($this['config']['logfile'], 7));
+        $logger->pushHandler($this['logger.handler']);
     }
 
     /**
@@ -62,7 +61,7 @@ class Application extends Container
      */
     public function run()
     {
-        $this->bot = new Bot;
+        $this->bot = $this['irc.bot'];
 
         $this->applyBotConfig();
         $this->applyBotLogger();

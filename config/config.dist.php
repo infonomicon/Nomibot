@@ -4,6 +4,8 @@ return [
 
     'logfile' => __DIR__.'/../var/log/bot.log',
 
+    'logrotation' => 7,
+
     'connection' => [
         'serverHostname' => '',
         'username' => '',

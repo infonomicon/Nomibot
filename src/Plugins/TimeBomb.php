@@ -258,7 +258,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         $this->bombNick = isset($params[0]) ? trim($params[0]) : $event->getNick();
 
         if (strtolower($this->bombNick) === strtolower($event->getConnection()->getNickname())) {
-            $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
+            $queue->ircKick($event->getSource(), $event->getNick(), "I will not tolerate this!");
             $this->bombNick = null;
             return;
         }
@@ -412,7 +412,7 @@ class TimeBomb extends AbstractPlugin implements LoopAwareInterface
         }
 
         if (strtolower($this->bombNick) === strtolower($event->getConnection()->getNickname())) {
-            $queue->ircKick($event->getSource(), $event->getNick(), "I will not tollerate this!");
+            $queue->ircKick($event->getSource(), $event->getNick(), "I will not tolerate this!");
             $this->endGame();
             return;
         }

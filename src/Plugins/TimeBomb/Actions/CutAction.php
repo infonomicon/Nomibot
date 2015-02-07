@@ -17,16 +17,15 @@ class CutAction extends BaseAction
         }
 
         $bomb = $this->game->getBomb();
-        $bombHolder = $this->game->getBombHolder();
+        $bombHolder = $this->game->getBombHolder()->getNick();
 
         if (!$bomb->hasWire($wire)) {
             return;
         }
 
         if ($bomb->isFuse($wire)) {
-            $holderNick = $bombHolder->getNick();
             $seconds = $this->game->getTimer()->remaining();
-            $this->message("$holderNick cut the $wire wire.  This has defused the bomb with [\x02$seconds\x02] seconds to spare!");
+            $this->message("$bombHolder cut the $wire wire.  This has defused the bomb with [\x02$seconds\x02] seconds to spare!");
             $this->game->end();
             return;
         }

@@ -14,16 +14,6 @@ class Player
      */
     public function __construct($nick)
     {
-        $this->setNick($nick);
-    }
-
-    /**
-     * Set the player's nick
-     *
-     * @param string $nick The new nick
-     */
-    public function setNick($nick)
-    {
         $this->nick = trim($nick);
     }
 

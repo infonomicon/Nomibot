@@ -10,7 +10,9 @@ class CutAction extends BaseAction
             return;
         }
 
-        if (!$wire = reset($this->event->getCustomParams())) {
+        $params = $this->event->getCustomParams();
+
+        if (!$wire = reset($params)) {
             return;
         }
 

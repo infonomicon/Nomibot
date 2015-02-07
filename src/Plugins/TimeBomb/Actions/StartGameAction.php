@@ -23,7 +23,9 @@ class StartGameAction extends BaseAction
             return;
         }
 
-        $receiver = $this->getNickParam();
+        if (!$receiver = $this->getNickParam()) {
+            $receiver = $sender;
+        }
 
         if ($this->isBotNick($receiver)) {
             $this->kick($sender, "I will not tolerate this!");
@@ -120,6 +122,6 @@ class StartGameAction extends BaseAction
     {
         $params = $this->event->getCustomParams();
 
-        return isset($params[0]) ? trim($params[0]) : null;
+        return reset($params);
     }
 }

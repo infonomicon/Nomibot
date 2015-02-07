@@ -17,7 +17,9 @@ class TossAction extends BaseAction
             return;
         }
 
-        if (!$receiver = reset($this->event->getCustomParams())) {
+        $params = $this->event->getCustomParams();
+
+        if (!$receiver = reset($params)) {
             return;
         }
 

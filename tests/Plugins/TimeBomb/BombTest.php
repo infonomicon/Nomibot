@@ -27,9 +27,24 @@ class BombTest extends \PHPUnit_Framework_TestCase
         $bomb = Bomb::create([
             'min_wires' => 1,
             'max_wires' => 3,
+            'troll_wire' => false,
         ]);
 
         $this->assertGreaterThanOrEqual(1, $bomb->countWires());
         $this->assertLessThanOrEqual(3, $bomb->countWires());
+        $this->assertFuseInWires($bomb);
+    }
+
+    private function assertFuseInWires(Bomb $bomb)
+    {
+        $result = false;
+
+        foreach ($bomb->getWires() as $wire) {
+            if ($bomb->isFuse($wire)) {
+                $result = true;
+            }
+        }
+
+        $this->assertTrue($result);
     }
 }

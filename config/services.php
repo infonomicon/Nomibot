@@ -46,7 +46,7 @@ $app->singleton('Nomibot\Plugins\Omniscan');
 $app->singleton('Nomibot\Plugins\ThisIsNot');
 $app->singleton('Nomibot\Plugins\DangerZone');
 
-$app->singleton('Nomibot\Plugins\TimeBomb')
+$app->singleton('Nomibot\Plugins\TimeBomb\Plugin')
     ->withArgument($app['config']['timebomb']);
 
 $app->singleton('Nomibot\Plugins\Quote')

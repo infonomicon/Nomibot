@@ -26,7 +26,7 @@ return [
     ],
 
     'timebomb' => [
-        'optoutfile' => __DIR__.'/../var/timebomb_optouts.json',
+        'optout_file' => __DIR__.'/../var/timebomb_optouts.json',
     ],
 
     'quote' => [
@@ -56,7 +56,7 @@ return [
         'Nomibot\Plugins\Omniscan',
         'Nomibot\Plugins\ThisIsNot',
         'Nomibot\Plugins\DangerZone',
-        'Nomibot\Plugins\TimeBomb',
+        'Nomibot\Plugins\TimeBomb\Plugin',
         'Nomibot\Plugins\Quote',
         'Nomibot\Plugins\Joke',
         'Nomibot\Plugins\WordGame\Plugin',

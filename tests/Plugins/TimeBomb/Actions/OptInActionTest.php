@@ -16,14 +16,12 @@ class OptInActionTest extends \PHPUnit_Framework_TestCase
         $game
             ->shouldReceive('getOptOuts')
             ->andReturn($optouts);
-
         $event
             ->shouldReceive('getNick')
             ->andReturn('OptedOut');
         $event
             ->shouldReceive('getSource')
             ->andReturn('channel');
-
         $optouts
             ->shouldReceive('contains')
             ->with('OptedOut')
@@ -31,13 +29,11 @@ class OptInActionTest extends \PHPUnit_Framework_TestCase
         $optouts
             ->shouldReceive('remove')
             ->with('OptedOut');
-
         $queue
             ->shouldReceive('ircPrivmsg')
             ->withArgs(['channel', "OptedOut: You've opted back in to the timebomb game."]);
 
         $action = new OptInAction($event, $queue, $game);
-
         $action();
     }
 
@@ -58,18 +54,15 @@ class OptInActionTest extends \PHPUnit_Framework_TestCase
         $event
             ->shouldReceive('getSource')
             ->andReturn('channel');
-
         $optouts
             ->shouldReceive('contains')
             ->with('Tester')
             ->andReturn(false);
-
         $queue
             ->shouldReceive('ircPrivmsg')
             ->withArgs(['channel', "Tester: You're already opted in."]);
 
         $action = new OptInAction($event, $queue, $game);
-
         $action();
     }
 }

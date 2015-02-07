@@ -16,19 +16,16 @@ class TimeUpActionTest extends \PHPUnit_Framework_TestCase
         $game
             ->shouldReceive('getBombHolder')
             ->andReturn(new Player('holder'));
-
         $event
             ->shouldReceive('getSource')
             ->andReturn('channel');
-
         $queue
             ->shouldReceive('ircKick')
             ->withArgs(['channel', 'holder', "\x02*BOOM!*\x02"]);
-
-        $game->shouldReceive('end');
+        $game
+            ->shouldReceive('end');
 
         $action = new TimeUpAction($event, $queue, $game);
-
         $action();
     }
 }

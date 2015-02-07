@@ -108,7 +108,7 @@ class StartGameAction extends BaseAction
 
         $lastItem = array_pop($array);
         $str = implode(', ', $array);
-        $str .= ' and ' . $lastItem;
+        $str .= ', and ' . $lastItem;
 
         return $str;
     }

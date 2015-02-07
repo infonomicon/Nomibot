@@ -54,19 +54,19 @@ class OptInActionTest extends \PHPUnit_Framework_TestCase
 
         $event
             ->shouldReceive('getNick')
-            ->andReturn('OptedOut');
+            ->andReturn('Tester');
         $event
             ->shouldReceive('getSource')
             ->andReturn('channel');
 
         $optouts
             ->shouldReceive('contains')
-            ->with('OptedOut')
+            ->with('Tester')
             ->andReturn(false);
 
         $queue
             ->shouldReceive('ircPrivmsg')
-            ->withArgs(['channel', "OptedOut: You're already opted in."]);
+            ->withArgs(['channel', "Tester: You're already opted in."]);
 
         $action = new OptInAction($event, $queue, $game);
 

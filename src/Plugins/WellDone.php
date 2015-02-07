@@ -30,9 +30,7 @@ class WellDone extends AbstractPlugin
             return;
         }
 
-        $params = $event->getParams();
-
-        if ($params['user'] == $event->getConnection()->getNickname()) {
+        if ($event->getNick() === $event->getConnection()->getNickname()) {
             return;
         }
 

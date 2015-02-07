@@ -212,9 +212,9 @@ class Game
             $this->timer->cancel();
         }
 
-        $this->setChannel(null);
-        $this->setBombHolder(null);
+        $this->channel = null;
         $this->players = null;
         $this->bomb = null;
+        $this->bombHolder = null;
     }
 }

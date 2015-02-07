@@ -4,6 +4,9 @@ namespace Nomibot\Plugins\TimeBomb\Actions;
 
 class TossAction extends BaseAction
 {
+    /**
+     * Handle bombtoss action
+     */
     public function __invoke()
     {
         if (!$this->game->isRunning() || $this->event->getSource() !== $this->game->getChannel()) {

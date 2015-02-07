@@ -24,9 +24,9 @@ abstract class BaseAction
     protected $game;
 
     /**
-     * @param Event $event The irc event
-     * @param Queue $queue The event queue
-     * @param Game|null $game The current game
+     * @param Event     $event The irc event
+     * @param Queue     $queue The event queue
+     * @param Game|null $game  The current game
      */
     public function __construct(Event $event, Queue $queue, Game $game = null)
     {
@@ -78,6 +78,7 @@ abstract class BaseAction
      * @see    RFC 2812 section 2.3.1
      *
      * @param  string $nick
+     *
      * @return boolean
      */
     protected function isValidNick($nick)

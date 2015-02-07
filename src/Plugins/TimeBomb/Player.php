@@ -20,7 +20,7 @@ class Player
     /**
      * Set the player's nick
      *
-     * @param string nick The new nick
+     * @param string $nick The new nick
      */
     public function setNick($nick)
     {

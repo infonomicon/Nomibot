@@ -4,6 +4,9 @@ namespace Nomibot\Plugins\TimeBomb\Actions;
 
 class CutAction extends BaseAction
 {
+    /**
+     * Handle cut wire action
+     */
     public function __invoke()
     {
         if (!$this->game->isRunning() || !$this->validateBombHolder() || !$this->validateChannel()) {

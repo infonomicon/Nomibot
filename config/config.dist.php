@@ -27,6 +27,11 @@ return [
 
     'timebomb' => [
         'optout_file' => __DIR__.'/../var/timebomb_optouts.json',
+        'min_wires' => 1,
+        'max_wires' => 3,
+        'min_seconds' => 120,
+        'max_seconds' => 240,
+        'troll_wire' => true,
     ],
 
     'quote' => [

@@ -191,14 +191,14 @@ class Game
     {
         $this->players = new Group([$from, $to]);
         $this->setBombHolder($to);
-        $this->bomb = Bomb::create();
+        $this->bomb = Bomb::create($this->options);
 
         $options = array_merge([
-            'min_time' => 120,
-            'max_time' => 240,
+            'min_seconds' => 120,
+            'max_seconds' => 240,
         ], $this->options);
 
-        $seconds = rand($options['min_time'], $options['max_time']);
+        $seconds = rand($options['min_seconds'], $options['max_seconds']);
 
         $this->timer->start($seconds, $callable);
     }

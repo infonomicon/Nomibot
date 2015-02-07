@@ -4,6 +4,9 @@ namespace Nomibot\Plugins\TimeBomb\Actions;
 
 class TimeUpAction extends BaseAction
 {
+    /**
+     * Handle time up action
+     */
     public function __invoke()
     {
         $holder = $this->game->getBombHolder()->getNick();

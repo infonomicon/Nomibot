@@ -178,4 +178,34 @@ class StartGameActionTest extends \PHPUnit_Framework_TestCase
         $action = new StartGameAction($event, $queue, $game);
         $action();
     }
+
+    public function testInvokeWithoutNickOption()
+    {
+        $event = m::mock('Phergie\Irc\Plugin\React\Command\CommandEventInterface');
+        $queue = m::mock('Phergie\Irc\Bot\React\EventQueueInterface');
+        $game = m::mock('Nomibot\Plugins\TimeBomb\Game');
+        $optouts = m::mock('Nomibot\Plugins\TimeBomb\OptOutManager');
+        $connection = m::mock('Phergie\Irc\ConnectionInterface');
+        $timer = m::mock('Nomibot\Plugins\TimeBomb\TimerInterface');
+
+        $game->shouldReceive('isRunning')->andReturn(false);
+        $event->shouldReceive('getNick')->andReturn('Tester');
+        $game->shouldReceive('getOptOuts')->andReturn($optouts);
+        $optouts->shouldReceive('contains')->with('Tester')->andReturn(false);
+        $event->shouldReceive('getCustomParams')->andReturn([]);
+        $event->shouldReceive('getConnection')->andReturn($connection);
+        $connection->shouldReceive('getNickname')->andReturn('TheBot');
+        $game->shouldReceive('setChannel')->with('channel');
+        $game->shouldReceive('start')->with('Tester')->with('Tester')->withAnyArgs();
+        $game->shouldReceive('getTimer')->andReturn($timer);
+        $timer->shouldReceive('total')->andReturn(120);
+        $game->shouldReceive('getBombHolder')->andReturn(new Player('Tester'));
+        $game->shouldReceive('getBomb')->andReturn(new Bomb(['Green'], 'Green'));
+        $event->shouldReceive('getSource')->andReturn('channel');
+        $queue->shouldReceive('ircPrivmsg')->withArgs(['channel', "\x01ACTION stuffs the bomb into Tester's pants.  The display reads [\x02120\x02] seconds.\x01"]);
+        $queue->shouldReceive('ircPrivmsg')->withArgs(['channel', "Defuse the bomb by cutting the correct wire. There is one wire. It is Green.  Use !cut <color>"]);
+
+        $action = new StartGameAction($event, $queue, $game);
+        $action();
+    }
 }

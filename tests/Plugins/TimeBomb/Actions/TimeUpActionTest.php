@@ -7,6 +7,11 @@ use Nomibot\Plugins\TimeBomb\Player;
 
 class TimeUpActionTest extends \PHPUnit_Framework_TestCase
 {
+    public function tearDown()
+    {
+        m::close();
+    }
+
     public function testInvoke()
     {
         $event = m::mock('Phergie\Irc\Plugin\React\Command\CommandEventInterface');

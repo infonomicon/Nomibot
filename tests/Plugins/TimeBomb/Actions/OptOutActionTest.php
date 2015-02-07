@@ -6,6 +6,11 @@ use Mockery as m;
 
 class OptOutActionTest extends \PHPUnit_Framework_TestCase
 {
+    public function tearDown()
+    {
+        m::close();
+    }
+
     public function testInvokeGameRunning()
     {
         $event = m::mock('Phergie\Irc\Plugin\React\Command\CommandEventInterface');

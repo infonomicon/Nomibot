@@ -74,7 +74,7 @@ class Plugin extends AbstractPlugin implements LoopAwareInterface
             throw new BadMethodCallException("No handler for '$name' method.");
         }
 
-        if (!($args[0] instanceof Event && $args[1] instanceof Queue)) {
+        if (!isset($args[0]) || !isset($args[1]) || !($args[0] instanceof Event && $args[1] instanceof Queue)) {
             throw new InvalidArgumentException("Arguments to '$name' method must by an irc event, and queue.");
         }
 

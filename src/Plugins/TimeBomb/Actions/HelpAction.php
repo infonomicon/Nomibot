@@ -44,13 +44,20 @@ class HelpAction extends BaseAction
      */
     public function __invoke()
     {
-        $command = str_replace('.help', '', $this->event->getCustomCommand());
+        $command = $this->event->getCustomCommand();
 
-        if (!isset($this->helpText[$command])) {
+        if ($command === 'help') {
+            $params = $this->event->getCustomParams();
+            $section = reset($params);
+        } else {
+            $section = str_replace('.help', '', $command);
+        }
+
+        if (!isset($this->helpText[$section])) {
             return;
         }
 
-        foreach ($this->helpText[$command] as $line) {
+        foreach ($this->helpText[$section] as $line) {
             $this->message($line);
         }
     }

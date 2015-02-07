@@ -68,7 +68,7 @@ class Plugin extends AbstractPlugin implements LoopAwareInterface
      */
     public function __call($name, array $args = [])
     {
-        $className = 'Actions\\' . ucfirst($name) . 'Action';
+        $className = 'Nomibot\\Plugins\\TimeBomb\\Actions\\' . ucfirst($name) . 'Action';
 
         if (!class_exists($className)) {
             throw new BadMethodCallException("No handler for '$name' method.");

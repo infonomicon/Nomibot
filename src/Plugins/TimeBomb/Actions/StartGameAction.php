@@ -89,9 +89,9 @@ class StartGameAction extends BaseAction
      */
     private function languageNumber($count)
     {
-        $formatter = new NumberFormatter('en_US', NumberFormatter::SPELLOUT);
+        $formatter = new NumberFormatter('en-US', NumberFormatter::SPELLOUT);
 
-        return $formatter->parse($count);
+        return $formatter->format($count);
     }
 
     /**

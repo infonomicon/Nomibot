@@ -55,7 +55,7 @@ class StartGameAction extends BaseAction
     {
         if ($this->game->getChannel() === $this->event->getSource()) {
             $playerNick = $this->game->getBombHolder()->getNick();
-            $this->message("points at the bulge in the back of {$playerNick}'s pants.");
+            $this->action("points at the bulge in the back of $playerNick's pants.");
         } else {
             $this->message("I don't have a single bomb to spare. :-(");
         }

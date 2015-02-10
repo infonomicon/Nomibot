@@ -17,9 +17,12 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
         $bot = m::mock('Phergie\Irc\Bot\React\Bot');
         $logger = m::mock('Monolog\Logger');
+        $client = m::mock('Phergie\Irc\Client\React\Client');
 
         $bot->shouldReceive('getLogger')->andReturn($logger);
         $bot->shouldReceive('setConfig')->once();
+        $bot->shouldReceive('getClient')->andReturn($client);
+        $client->shouldReceive('on')->once()->withAnyArgs();
         $bot->shouldReceive('run')->once();
 
         $logger->shouldReceive('popHandler');

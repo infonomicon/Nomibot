@@ -57,6 +57,31 @@ class Application extends Container
     }
 
     /**
+     * Apply client event handling
+     */
+    private function applyBotEvents()
+    {
+        $client = $this->bot->getClient();
+        $lastAttempt = 0;
+
+        $client->on('connect.end', function ($connection, $logger) use ($client, &$lastAttempt) {
+            $logger->info('Connection ended unexpectedly.');
+            $now = microtime(true);
+            $diff = $now - $lastAttempt;
+
+            if ($diff < 900) {
+                $delay = 900 - floor($diff);
+                $logger->info("Last connection attempt too recent.  Delaying $delay seconds.");
+                sleep($delay);
+            }
+
+            $logger->info('Attempting to reconnect...');
+            $lastAttempt = $now;
+            $client->addConnection($connection);
+        });
+    }
+
+    /**
      * Run the bot!
      */
     public function run()
@@ -65,6 +90,7 @@ class Application extends Container
 
         $this->applyBotConfig();
         $this->applyBotLogger();
+        $this->applyBotEvents();
 
         $this->bot->run();
     }

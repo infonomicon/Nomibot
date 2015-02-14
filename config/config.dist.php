@@ -58,6 +58,7 @@ return [
         'Nomibot\Plugins\Calculator',
         'Nomibot\Plugins\Sheep',
         'Nomibot\Plugins\WellDone',
+        'Nomibot\Plugins\Cointoss',
         'Nomibot\Plugins\FlipGoat',
         'Nomibot\Plugins\Omniscan',
         'Nomibot\Plugins\ThisIsNot',

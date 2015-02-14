@@ -42,6 +42,7 @@ $app->singleton('Nomibot\Plugins\Say');
 $app->singleton('Nomibot\Plugins\Calculator');
 $app->singleton('Nomibot\Plugins\Sheep');
 $app->singleton('Nomibot\Plugins\WellDone');
+$app->singleton('Nomibot\Plugins\Cointoss');
 $app->singleton('Nomibot\Plugins\FlipGoat');
 $app->singleton('Nomibot\Plugins\Omniscan');
 $app->singleton('Nomibot\Plugins\ThisIsNot');

@@ -72,7 +72,8 @@ class Calculator extends AbstractPlugin
                 break;
             case '/':
                 if ($b == 0) {
-                    $ans = 'Fuck you.';
+                    $queue->ircKick($event->getSource(), $event->getNick(), "I will not tolerate this!");
+                    return;
                 } else {
                     $ans = $a / $b;
                 }
@@ -85,6 +86,6 @@ class Calculator extends AbstractPlugin
                 break;
         }
 
-        $queue->ircPrivmsg($event->getSource(), "$ans");
+        $queue->ircPrivmsg($event->getSource(), $ans ?: "0.");
     }
 }

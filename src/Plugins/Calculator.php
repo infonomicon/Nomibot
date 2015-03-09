@@ -8,6 +8,13 @@ use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 
 class Calculator extends AbstractPlugin
 {
+    private $constants = [
+        'π' => M_PI,
+        'pi' => M_PI,
+        '2π' => M_PI * 2,
+        '2pi' => M_PI * 2,
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -48,7 +55,9 @@ class Calculator extends AbstractPlugin
             return;
         }
 
-        list($a, $op, $b) = $params;
+        $a = $this->resolveNumber($params[0]);
+        $op = $params[1];
+        $b = $this->resolveNumber($params[2]);
 
         if (!is_numeric($a) || !is_numeric($b)) {
             $queue->ircPrivmsg($event->getSource(), "Values provided must be numeric.");
@@ -87,5 +96,14 @@ class Calculator extends AbstractPlugin
         }
 
         $queue->ircPrivmsg($event->getSource(), $ans ?: "0.");
+    }
+
+    public function resolveNumber($constant)
+    {
+        if (!isset($this->constants[$constant])) {
+            return $constant;
+        }
+
+        return $this->constants[$constant];
     }
 }

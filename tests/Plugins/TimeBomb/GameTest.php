@@ -101,10 +101,16 @@ class GameTest extends \PHPUnit_Framework_TestCase
         $timer->shouldReceive('running')->andReturn(true);
         $timer->shouldReceive('cancel');
 
+        $reflection = new \ReflectionClass(Game::class);
+        $property = $reflection->getProperty('tossExplosionChance');
+        $property->setAccessible(true);
+        $property->setValue($game, 10);
+
         $game->end();
 
         $this->assertNull($game->getChannel());
         $this->assertNull($game->getBombHolder());
         $this->assertNull($game->getBomb());
+        $this->assertEquals(1, $property->getValue($game));
     }
 }

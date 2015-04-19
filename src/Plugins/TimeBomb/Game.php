@@ -216,5 +216,6 @@ class Game
         $this->players = null;
         $this->bomb = null;
         $this->bombHolder = null;
+        $this->tossExplosionChance = 1;
     }
 }

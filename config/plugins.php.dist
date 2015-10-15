@@ -1,0 +1,70 @@
+<?php
+
+return [
+    new Phergie\Irc\Plugin\React\Pong\Plugin(),
+    
+    new Phergie\Irc\Plugin\React\NickServ\Plugin([
+        'password' => '',
+    ]),
+
+    new Phergie\Irc\Plugin\React\AutoJoin\Plugin([
+        'channels' => [],
+    ]),
+
+    new Phergie\Irc\Plugin\React\Command\Plugin([
+        'prefix' => '!',
+    ]),
+
+    new Phergie\Irc\Plugin\React\CommandHelp\Plugin([
+        'listText' => 'Commands: calc cointoss flipgoat omniscan timebomb bombtoss cut bombout bombin quotes quote q addquote joke word score',
+    ]),
+
+    new Phergie\Plugin\Dns\Plugin,
+    new Phergie\Plugin\Http\Plugin,
+    //new Phergie\Plugin\Url\Plugin,
+
+    new EnebeNb\Phergie\Plugin\AutoRejoin\Plugin([
+        'channels' => [''],
+    ]),
+
+    new Renegade334\Phergie\Plugin\React\Seen\Plugin,
+
+    new Nomibot\Plugins\Reconnect,
+    new Nomibot\Plugins\Say,
+    new Nomibot\Plugins\Calculator,
+    new Nomibot\Plugins\Sheep,
+    //new Nomibot\Plugins\WellDone,
+    new Nomibot\Plugins\Cointoss,
+    new Nomibot\Plugins\FlipGoat,
+    new Nomibot\Plugins\Omniscan,
+    new Nomibot\Plugins\ThisIsNot,
+    new Nomibot\Plugins\DangerZone,
+
+    new Nomibot\Plugins\TimeBomb\Plugin([
+        'optout_file' => __DIR__.'/../var/timebomb_optouts.json',
+        'min_wires' => 1,
+        'max_wires' => 3,
+        'min_seconds' => 120,
+        'max_seconds' => 240,
+        'troll_wire' => true,
+    ]),
+
+    new Nomibot\Plugins\Quote([
+        'quotefile' => __DIR__.'/../var/quotes.json',
+    ]),
+
+    //new Nomibot\Plugins\Greet,
+
+    new Nomibot\Plugins\Joke([
+        'jokefile' => __DIR__.'/../var/jokes.json',
+    ]),
+
+    new Nomibot\Plugins\WordGame\Plugin(
+        new Nomibot\Plugins\WordGame\Providers\JsonWordProvider(
+            __DIR__ . '/../var/wordgame_wordlist.json'
+        ),
+        new Nomibot\Plugins\WordGame\Scoreboards\SqliteScoreboard(
+            __DIR__ . '/../var/wordgame_scores.db'
+        )
+    ),
+];

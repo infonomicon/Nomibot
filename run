@@ -3,8 +3,11 @@
 
 require 'vendor/autoload.php';
 
-$app = new Nomibot\Application;
+$bot = new Phergie\Irc\Bot\React\Bot;
 
-require 'config/services.php';
+$bot->setConfig([
+    'connections' => require __DIR__ . '/config/connections.php',
+    'plugins' => require __DIR__ . '/config/plugins.php',
+]);
 
-$app->run();
+$bot->run();

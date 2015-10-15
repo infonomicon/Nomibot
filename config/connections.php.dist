@@ -1,0 +1,18 @@
+<?php
+
+use Phergie\Irc\Connection;
+
+return [
+    new Connection([
+        'serverHostname' => 'irc.freenode.net',
+        'username' => '',
+        'realname' => '',
+        'nickname' => '',
+
+        'serverport' => 6697,
+
+        'options' => [
+            'transport' => 'ssl',
+        ],
+    ]),
+];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2f614d8d51afe89ab3ff86774e75dcd2",
+    "hash": "c2446a2d0c8d9b8f3a381ffe12a8370a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -565,64 +565,6 @@
             "time": "2012-11-02 14:49:47"
         },
         {
-            "name": "guzzlehttp/guzzle",
-            "version": "5.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f3c8c22471cb55475105c14769644a49c3262b93"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f3c8c22471cb55475105c14769644a49c3262b93",
-                "reference": "f3c8c22471cb55475105c14769644a49c3262b93",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/ringphp": "^1.1",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "^4.0",
-                "psr/log": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "time": "2015-05-20 03:47:55"
-        },
-        {
             "name": "guzzlehttp/psr7",
             "version": "1.2.0",
             "source": {
@@ -679,107 +621,6 @@
                 "uri"
             ],
             "time": "2015-08-15 19:32:36"
-        },
-        {
-            "name": "guzzlehttp/ringphp",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/RingPHP.git",
-                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
-                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/streams": "~3.0",
-                "php": ">=5.4.0",
-                "react/promise": "~2.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "ext-curl": "Guzzle will use specific adapters if cURL is present"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Ring\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
-            "time": "2015-05-20 03:37:09"
-        },
-        {
-            "name": "guzzlehttp/streams",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/streams.git",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Stream\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple abstraction over streams of data",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "stream"
-            ],
-            "time": "2014-10-12 19:18:40"
         },
         {
             "name": "monolog/monolog",
@@ -1182,115 +1023,6 @@
             "time": "2015-07-16 16:26:41"
         },
         {
-            "name": "phergie/phergie-irc-plugin-dns",
-            "version": "3.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/plugin-dns.git",
-                "reference": "b46d8b4c77143ee2b5fb8d0cf3e06d923dce3145"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/plugin-dns/zipball/b46d8b4c77143ee2b5fb8d0cf3e06d923dce3145",
-                "reference": "b46d8b4c77143ee2b5fb8d0cf3e06d923dce3145",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "^1.0",
-                "php": ">=5.4.0",
-                "react/dns": "^0.4"
-            },
-            "require-dev": {
-                "phake/phake": "~1.0",
-                "phergie/phergie-irc-plugin-react-command": "~1.0",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "^1.5.3",
-                "vectorface/dunit": "^2.0"
-            },
-            "suggest": {
-                "phergie/phergie-irc-plugin-react-command": "Required if you want to make use of the command support"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Plugin\\Dns\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com"
-                }
-            ],
-            "description": "Phergie plugin for Looking up IP's by hostnames",
-            "keywords": [
-                "bot",
-                "irc",
-                "phergie",
-                "phergieplugin",
-                "plugin",
-                "react"
-            ],
-            "time": "2015-09-13 11:13:43"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-http",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/plugin-http.git",
-                "reference": "e6c31af70b54ba5b37bb0cff57fa5a260f819974"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/plugin-http/zipball/e6c31af70b54ba5b37bb0cff57fa5a260f819974",
-                "reference": "e6c31af70b54ba5b37bb0cff57fa5a260f819974",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "~1.0",
-                "phergie/phergie-irc-plugin-dns": "^3.0",
-                "php": ">=5.4.0",
-                "wyrihaximus/react-guzzle-ring": "^1.0"
-            },
-            "require-dev": {
-                "phake/phake": "~1.0",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "^1.5.3",
-                "vectorface/dunit": "^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Plugin\\Http\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com"
-                }
-            ],
-            "description": "Phergie plugin for Provide HTTP functionality to other plugins",
-            "keywords": [
-                "bot",
-                "irc",
-                "phergie",
-                "phergieplugin",
-                "plugin",
-                "react"
-            ],
-            "time": "2015-09-12 22:28:40"
-        },
-        {
             "name": "phergie/phergie-irc-plugin-react-autojoin",
             "version": "1.1.0",
             "source": {
@@ -1496,53 +1228,6 @@
                 "react"
             ],
             "time": "2014-12-24 01:31:46"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-url",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/plugin-url.git",
-                "reference": "998f85b0a4311077541a4d1a8acf2238ac81d26b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/plugin-url/zipball/998f85b0a4311077541a4d1a8acf2238ac81d26b",
-                "reference": "998f85b0a4311077541a4d1a8acf2238ac81d26b",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "^0.0.0",
-                "nojimage/twitter-text-php": "1.1.1",
-                "phergie/phergie-irc-bot-react": "~1.0",
-                "phergie/phergie-irc-plugin-http": "^3.0.0-alpha1",
-                "php": ">=5.4.0",
-                "react/promise": "~1.0|~2.0"
-            },
-            "require-dev": {
-                "phake/phake": "~1.0",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.0",
-                "vectorface/dunit": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Plugin\\Url\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Phergie plugin for Display URL information about links",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2015-09-13 09:52:30"
         },
         {
             "name": "psr/http-message",
@@ -2033,97 +1718,145 @@
             "time": "2015-03-28 23:31:36"
         },
         {
-            "name": "wyrihaximus/react-guzzle-http-client",
-            "version": "3.0.0",
+            "name": "wyrihaximus/phergie-dns",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WyriHaximus/react-guzzle-http-client.git",
-                "reference": "4ba3bc87daabeca14d38637cc47e3ddc1898d260"
+                "url": "https://github.com/WyriHaximus/PhergieDns.git",
+                "reference": "9afa9041238711ab4320d54f0415900e388c9ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/react-guzzle-http-client/zipball/4ba3bc87daabeca14d38637cc47e3ddc1898d260",
-                "reference": "4ba3bc87daabeca14d38637cc47e3ddc1898d260",
+                "url": "https://api.github.com/repos/WyriHaximus/PhergieDns/zipball/9afa9041238711ab4320d54f0415900e388c9ea4",
+                "reference": "9afa9041238711ab4320d54f0415900e388c9ea4",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/psr7": "^1.0",
-                "psr/http-message": "^1.0",
-                "react/http-client": "^0.4"
+                "phergie/phergie-irc-bot-react": "~1.0",
+                "php": ">=5.4.0",
+                "react/dns": "0.4.*"
             },
             "require-dev": {
-                "phake/phake": "~1.0.6",
+                "phake/phake": "~1.0",
+                "phergie/phergie-irc-plugin-react-command": "~1.0",
                 "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5.0",
-                "vectorface/dunit": "~2"
+                "vectorface/dunit": "dev-master"
+            },
+            "suggest": {
+                "phergie/phergie-irc-plugin-react-command": "Required if you want to make use of the command support"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "WyriHaximus\\React\\Guzzle\\HttpClient\\": "src/"
+                    "WyriHaximus\\Phergie\\Plugin\\Dns\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
+            "description": "Phergie plugin for Looking up IP's by hostnames",
+            "keywords": [
+                "bot",
+                "irc",
+                "phergie",
+                "phergieplugin",
+                "plugin",
+                "react"
             ],
-            "description": "Asyncronous GuzzleRing adapter powered by react/http-client",
-            "time": "2015-08-09 19:42:05"
+            "time": "2015-09-13 07:35:13"
         },
         {
-            "name": "wyrihaximus/react-guzzle-ring",
-            "version": "1.0.1",
+            "name": "wyrihaximus/phergie-http",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WyriHaximus/ReactGuzzleRing.git",
-                "reference": "2967e48438f6b4142e571e845e2ed8176aaa7ad0"
+                "url": "https://github.com/WyriHaximus/PhergieHttp.git",
+                "reference": "26a89d7c927e3518520de5ad1766efb7a3edfbc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/ReactGuzzleRing/zipball/2967e48438f6b4142e571e845e2ed8176aaa7ad0",
-                "reference": "2967e48438f6b4142e571e845e2ed8176aaa7ad0",
+                "url": "https://api.github.com/repos/WyriHaximus/PhergieHttp/zipball/26a89d7c927e3518520de5ad1766efb7a3edfbc7",
+                "reference": "26a89d7c927e3518520de5ad1766efb7a3edfbc7",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "~5.0",
-                "guzzlehttp/psr7": "^1.1",
-                "guzzlehttp/ringphp": "~1.0",
-                "psr/http-message": "^1.0",
-                "react/dns": "^0.4.1",
-                "wyrihaximus/react-guzzle-http-client": "^3.0.0"
+                "phergie/phergie-irc-bot-react": "~1.0",
+                "php": ">=5.4.0",
+                "react/http-client": "0.4.*",
+                "wyrihaximus/phergie-dns": "~2.1"
             },
             "require-dev": {
-                "phake/phake": "~1.0.6",
+                "phake/phake": "~1.0",
                 "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5.0",
+                "vectorface/dunit": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WyriHaximus\\Phergie\\Plugin\\Http\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Phergie plugin for Provide HTTP functionality to other plugins",
+            "keywords": [
+                "bot",
+                "irc",
+                "phergie",
+                "phergieplugin",
+                "plugin",
+                "react"
+            ],
+            "time": "2015-02-20 09:26:00"
+        },
+        {
+            "name": "wyrihaximus/phergie-url",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WyriHaximus/PhergieUrl.git",
+                "reference": "a9124f42fd23b862d0a9a6030cd8497ae176be0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WyriHaximus/PhergieUrl/zipball/a9124f42fd23b862d0a9a6030cd8497ae176be0b",
+                "reference": "a9124f42fd23b862d0a9a6030cd8497ae176be0b",
+                "shasum": ""
+            },
+            "require": {
+                "nojimage/twitter-text-php": "1.1.1",
+                "phergie/phergie-irc-bot-react": "~1.0",
+                "php": ">=5.4.0",
+                "react/promise": "~1.0|~2.0",
+                "wyrihaximus/phergie-http": "~1.0|~2.0"
+            },
+            "require-dev": {
+                "phake/phake": "~1.0",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.0",
                 "vectorface/dunit": "~2.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "WyriHaximus\\React\\RingPHP\\": "src/"
+                    "WyriHaximus\\Phergie\\Plugin\\Url\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Cees-Jan Kiewiet",
-                    "email": "ceesjank@gmail.com",
-                    "homepage": "http://wyrihaximus.net/"
-                }
+            "description": "Phergie plugin for Display URL information about links",
+            "keywords": [
+                "bot",
+                "irc",
+                "plugin",
+                "react"
             ],
-            "description": "Asyncronous GuzzleRing adapter powered by react/http-client",
-            "time": "2015-08-10 20:29:53"
+            "time": "2015-04-24 15:42:51"
         }
     ],
     "packages-dev": [
@@ -3191,9 +2924,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phergie/phergie-irc-plugin-url": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

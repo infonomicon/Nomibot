@@ -80,7 +80,7 @@ class Quote extends AbstractPlugin
 
         $queue->ircPrivmsg($channel, "addquote [group] [quote]");
         $queue->ircPrivmsg($channel, "========================");
-        $queue->ircPrivmsg($channel, "Add a quote to a group.  Make sure the quote parameter is in double-quotes if it contains spaces.");
+        $queue->ircPrivmsg($channel, "Add a quote to a group.");
     }
 
     /**
@@ -130,9 +130,11 @@ class Quote extends AbstractPlugin
     public function handleAdd(Event $event, Queue $queue)
     {
         $params = $event->getCustomParams();
+        $group = array_shift($params);
+        $quote = implode(' ', $params);
 
-        if (count($params) === 2) {
-            $this->addQuote($params[0], $params[1]);
+        if (count($params) >= 2) {
+            $this->addQuote($group, $quote);
             $queue->ircPrivmsg($event->getSource(), "Quote added.");
         }
     }

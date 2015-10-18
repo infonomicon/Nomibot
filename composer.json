@@ -9,13 +9,13 @@
         "phergie/phergie-irc-plugin-react-pong": "^1.1",
         "phergie/phergie-irc-plugin-react-nickserv": "^1.1",
         "phergie/phergie-irc-plugin-react-autojoin": "^1.0",
-        "phergie/phergie-irc-plugin-dns": "^3.0",
-        "phergie/phergie-irc-plugin-http": "^3.0",
-        "phergie/phergie-irc-plugin-url": "dev-master",
         "phergie/phergie-irc-plugin-react-command": "^1.1",
         "phergie/phergie-irc-plugin-react-commandhelp": "^1.0",
         "enebe-nb/phergie-irc-plugin-react-autorejoin": "^1.0",
-        "renegade334/phergie-irc-plugin-react-seen": "^1.0"
+        "renegade334/phergie-irc-plugin-react-seen": "^1.0",
+        "wyrihaximus/phergie-dns": "^2.1",
+        "wyrihaximus/phergie-http": "^2.1",
+        "wyrihaximus/phergie-url": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.0",

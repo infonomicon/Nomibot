@@ -1,7 +1,7 @@
 <?php
 
 return [
-    new Phergie\Irc\Plugin\React\Pong\Plugin(),
+    new Phergie\Irc\Plugin\React\Pong\Plugin,
     
     new Phergie\Irc\Plugin\React\NickServ\Plugin([
         'password' => '',
@@ -19,21 +19,20 @@ return [
         'listText' => 'Commands: calc cointoss flipgoat omniscan timebomb bombtoss cut bombout bombin quotes quote q addquote joke word score',
     ]),
 
-    new Phergie\Plugin\Dns\Plugin,
-    new Phergie\Plugin\Http\Plugin,
-    //new Phergie\Plugin\Url\Plugin,
-
     new EnebeNb\Phergie\Plugin\AutoRejoin\Plugin([
         'channels' => [''],
     ]),
 
     new Renegade334\Phergie\Plugin\React\Seen\Plugin,
 
+    new WyriHaximus\Phergie\Plugin\Dns\Plugin,
+    new WyriHaximus\Phergie\Plugin\Http\Plugin,
+    new WyriHaximus\Phergie\Plugin\Url\Plugin,
+
     new Nomibot\Plugins\Reconnect,
     new Nomibot\Plugins\Say,
     new Nomibot\Plugins\Calculator,
     new Nomibot\Plugins\Sheep,
-    //new Nomibot\Plugins\WellDone,
     new Nomibot\Plugins\Cointoss,
     new Nomibot\Plugins\FlipGoat,
     new Nomibot\Plugins\Omniscan,
@@ -52,8 +51,6 @@ return [
     new Nomibot\Plugins\Quote([
         'quotefile' => __DIR__.'/../var/quotes.json',
     ]),
-
-    //new Nomibot\Plugins\Greet,
 
     new Nomibot\Plugins\Joke([
         'jokefile' => __DIR__.'/../var/jokes.json',

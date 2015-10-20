@@ -130,10 +130,11 @@ class Quote extends AbstractPlugin
     public function handleAdd(Event $event, Queue $queue)
     {
         $params = $event->getCustomParams();
-        $group = array_shift($params);
-        $quote = implode(' ', $params);
 
         if (count($params) >= 2) {
+            $group = array_shift($params);
+            $quote = implode(' ', $params);
+
             $this->addQuote($group, $quote);
             $queue->ircPrivmsg($event->getSource(), "Quote added.");
         }

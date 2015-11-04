@@ -1,13 +1,4 @@
-#!/usr/bin/env php
-<?php
+#!/bin/sh
 
-require 'vendor/autoload.php';
-
-$bot = new Phergie\Irc\Bot\React\Bot;
-
-$bot->setConfig([
-    'connections' => require __DIR__ . '/config/connections.php',
-    'plugins' => require __DIR__ . '/config/plugins.php',
-]);
-
-$bot->run();
+nohup vendor/bin/phergie > /dev/null 2>&1 &
+echo Bot started as PID: $!

@@ -30,6 +30,7 @@ class SqliteScoreboard implements Scoreboard
 
         try {
             $this->db = new PDO("sqlite:{$filename}");
+            $this->migrate();
         } catch (\Exception $e) {
             throw new \RuntimeException('Cannot open sqlite db');
         }
@@ -82,5 +83,13 @@ class SqliteScoreboard implements Scoreboard
         }
 
         return $scores;
+    }
+
+    /**
+     * Migrate the database if new
+     */
+    private function migrate()
+    {
+        $this->db->query('CREATE TABLE IF NOT EXISTS scores (nick TEXT, scored_at TEXT)');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Nomibot\Plugins\TimeBomb\Actions;
 
-use NumberFormatter;
+use NumberToWords\NumberToWords;
 
 class StartGameAction extends BaseAction
 {
@@ -89,9 +89,10 @@ class StartGameAction extends BaseAction
      */
     private function languageNumber($count)
     {
-        $formatter = new NumberFormatter('en-US', NumberFormatter::SPELLOUT);
+        $formatter = new NumberToWords();
+        $transformer = $formatter->getNumberTransformer('en');
 
-        return $formatter->format($count);
+        return $transformer->toWords($count);
     }
 
     /**

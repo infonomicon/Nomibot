@@ -118,7 +118,7 @@ class Quote extends AbstractPlugin
             $quote = $this->getRandomQuote();
         }
 
-        $queue->ircPrivmsg($event->getSource(), $quote);
+        $queue->ircPrivmsg($event->getSource(), $quote ?: 'No quotes found.');
     }
 
     /**

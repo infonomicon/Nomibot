@@ -5,17 +5,12 @@
         }
     },
     "require": {
-        "phergie/phergie-irc-bot-react": "^1.0",
-        "phergie/phergie-irc-plugin-react-pong": "^1.1",
-        "phergie/phergie-irc-plugin-react-nickserv": "^1.1",
-        "phergie/phergie-irc-plugin-react-autojoin": "^1.0",
-        "phergie/phergie-irc-plugin-react-command": "^1.1",
-        "phergie/phergie-irc-plugin-react-commandhelp": "^1.0",
-        "enebe-nb/phergie-irc-plugin-react-autorejoin": "^1.0",
-        "renegade334/phergie-irc-plugin-react-seen": "^1.0",
-        "wyrihaximus/phergie-dns": "^2.1",
-        "wyrihaximus/phergie-http": "^2.1",
-        "wyrihaximus/phergie-url": "^1.0"
+        "phergie/phergie-irc-bot-react": "^2.1",
+        "phergie/phergie-irc-plugin-react-nickserv": "^2.0",
+        "phergie/phergie-irc-plugin-react-autojoin": "^2.0",
+        "phergie/phergie-irc-plugin-react-command": "^2.0",
+        "phergie/phergie-irc-plugin-react-commandhelp": "^2.1",
+        "kwn/number-to-words": "^1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.0",
